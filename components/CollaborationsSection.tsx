@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import CTAButton from "@/components/ui/CTAButton";
 
 export default function CollaborationsSection() {
   const slideUpVariants = {
@@ -59,14 +60,45 @@ export default function CollaborationsSection() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               variants={slideUpVariants}
             >
-              {/* Card Image */}
-              <div className="relative max-h-[400px] aspect-square w-full p-5">
-                <Image
-                  src={collab.image}
-                  alt={collab.title.replace("\n", " ")}
-                  fill
-                  className="object-cover aspect-square p-5"
-                />
+              {/* Card Image with Stamp Wavy Effect */}
+              <div className="relative mx-auto mt-8 w-[85%] max-w-[360px]">
+                {/* Top wavy edge SVG */}
+                <svg
+                  viewBox="0 0 353 13"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-full"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0.494141 6.31055C5.30111 0.441406 18.6908 0.441406 23.4978 6.31055C28.3048 12.1797 41.6945 12.1797 46.5015 6.31055C51.3084 0.441406 64.6981 0.441406 69.5051 6.31055C74.3121 12.1797 87.7018 12.1797 92.5088 6.31055C97.3158 0.441406 110.705 0.441406 115.512 6.31055C120.319 12.1797 133.709 12.1797 138.516 6.31055C143.323 0.441406 156.713 0.441406 161.52 6.31055C166.327 12.1797 179.717 12.1797 184.524 6.31055C189.331 0.441406 202.72 0.441406 207.527 6.31055C212.334 12.1797 225.724 12.1797 230.531 6.31055C235.338 0.441406 248.728 0.441406 253.535 6.31055C258.342 12.1797 271.731 12.1797 276.538 6.31055C281.345 0.441406 294.735 0.441406 299.542 6.31055C304.349 12.1797 317.739 12.1797 322.546 6.31055C327.353 0.441406 340.742 0.441406 345.549 6.31055C347.953 8.74512 351.2 10.4624 353.494 11.2109V0H0.494141V6.31055Z"
+                    fill="white"
+                  />
+                </svg>
+
+                {/* White box with image */}
+                <div className="relative aspect-square w-full overflow-hidden bg-white">
+                  <Image
+                    src={collab.image}
+                    alt={collab.title.replace("\n", " ")}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Bottom wavy edge SVG (rotated) */}
+                <svg
+                  viewBox="0 0 353 13"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-full rotate-180"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0.494141 6.31055C5.30111 0.441406 18.6908 0.441406 23.4978 6.31055C28.3048 12.1797 41.6945 12.1797 46.5015 6.31055C51.3084 0.441406 64.6981 0.441406 69.5051 6.31055C74.3121 12.1797 87.7018 12.1797 92.5088 6.31055C97.3158 0.441406 110.705 0.441406 115.512 6.31055C120.319 12.1797 133.709 12.1797 138.516 6.31055C143.323 0.441406 156.713 0.441406 161.52 6.31055C166.327 12.1797 179.717 12.1797 184.524 6.31055C189.331 0.441406 202.72 0.441406 207.527 6.31055C212.334 12.1797 225.724 12.1797 230.531 6.31055C235.338 0.441406 248.728 0.441406 253.535 6.31055C258.342 12.1797 271.731 12.1797 276.538 6.31055C281.345 0.441406 294.735 0.441406 299.542 6.31055C304.349 12.1797 317.739 12.1797 322.546 6.31055C327.353 0.441406 340.742 0.441406 345.549 6.31055C347.953 8.74512 351.2 10.4624 353.494 11.2109V0H0.494141V6.31055Z"
+                    fill="white"
+                  />
+                </svg>
               </div>
 
               {/* Card Content */}
@@ -91,9 +123,15 @@ export default function CollaborationsSection() {
           transition={{ duration: 0.6, delay: 0.6 }}
           variants={slideUpVariants}
         >
-          <button className="rounded-lg border-2 border-[#262626] px-3 py-1 outline-2 outline-[#262626] outline-offset-3 font-rajdhani text-3xl font-semibold uppercase text-[#262626] transition-all hover:cursor-pointer hover:bg-[#262626] hover:text-white lg:text-[32px]">
+          <CTAButton
+            href="/contact"
+            borderColor="#262626"
+            textColor="#262626"
+            hoverBgColor="#262626"
+            hoverTextColor="#FFFFFF"
+          >
             COLLABORATE WITH US
-          </button>
+          </CTAButton>
         </motion.div>
       </div>
     </section>

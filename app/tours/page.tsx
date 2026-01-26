@@ -169,9 +169,9 @@ export default function ToursPage() {
           // Merge with sample data
           const allTours = [
             ...apiTours,
-            ...SAMPLE_CORPORATE_TOURS,
-            ...SAMPLE_EDUCATIONAL_TOURS,
-            ...SAMPLE_CUSTOM_TOURS,
+            // ...SAMPLE_CORPORATE_TOURS,
+            // ...SAMPLE_EDUCATIONAL_TOURS,
+            // ...SAMPLE_CUSTOM_TOURS,
           ];
 
           setTours(allTours);

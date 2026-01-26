@@ -42,60 +42,63 @@ export default function OfferingsSection() {
   ];
 
   return (
-    <section className="flex w-full flex-col items-center justify-center gap-16 px-4 py-20 bg-[#EDEDE7]">
+    <section className="flex w-full flex-col items-center justify-center gap-16 px-4 py-[125px] bg-[#EDEDE7]">
       <div className="w-full max-w-[1368px]">
         {/* Header */}
-        <div className="mb-16 flex flex-col items-center gap-4">
-          <h2 className="font-rajdhani text-6xl font-bold uppercase leading-none text-[#262626] md:text-7xl lg:text-[84px]">
+        <div className="mb-16 flex flex-col items-center gap-2">
+          <h2 className="font-rajdhani text-6xl font-bold uppercase leading-tight text-[#262626] md:text-7xl lg:text-[84px]">
             OUR OFFERINGS
           </h2>
-          <p className="text-center font-rajdhani text-2xl font-semibold leading-none text-[#262626] md:text-3xl lg:text-[32px]">
+          <p className="text-center font-rajdhani text-2xl font-semibold leading-tight text-[#262626] md:text-[24px]">
             Explorers come in many kinds, and we walk with them all
           </p>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 gap-6 px-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {offerings.map((offering, index) => (
             <Link
               key={index}
               href={offering.href}
-              className="group relative h-[600px] w-full overflow-hidden rounded-lg transition-transform hover:scale-105"
+              className="group relative flex h-[550px] flex-col overflow-hidden transition-transform hover:scale-105"
               style={{ backgroundColor: offering.bgColor }}
             >
               {/* Title */}
-              <div className="absolute left-0 right-0 top-8 z-10 px-8 text-center">
-                <h3 className="whitespace-pre-line font-rajdhani text-[40px] font-bold uppercase leading-[0.8em] text-white">
+              <div className="flex shrink-0 items-center justify-center px-8 pt-8 pb-4 text-center">
+                <h3 className="whitespace-pre-line font-rajdhani text-[35px] font-bold uppercase leading-[32px] text-white">
                   {offering.title}
                 </h3>
               </div>
 
-              {/* Masked Background Image */}
-              <div
-                className="absolute left-5 top-[133px] h-[373px] w-[280px]"
-                style={{
-                  maskImage: "url(/pattern-left.svg), url(/pattern-right.svg)",
-                  maskSize: "150px 373px, 150px 373px",
-                  maskPosition: "left center, right center",
-                  maskRepeat: "no-repeat, no-repeat",
-                  WebkitMaskImage:
-                    "url(/pattern-left.svg), url(/pattern-right.svg)",
-                  WebkitMaskSize: "150px 373px, 150px 373px",
-                  WebkitMaskPosition: "left center, right center",
-                  WebkitMaskRepeat: "no-repeat, no-repeat",
-                }}
-              >
-                <Image
-                  src={offering.image}
-                  alt={offering.title.replace("\n", " ")}
-                  fill
-                  className="object-cover"
-                />
+              {/* Middle section with image - grows to fill space */}
+              <div className="relative flex flex-1 items-center justify-center px-5">
+                {/* Masked Background Image */}
+                <div
+                  className="relative h-full w-full max-h-[342px] max-w-[254px]"
+                  style={{
+                    maskImage: "url(/pattern-left.svg), url(/pattern-right.svg)",
+                    maskSize: "150px 373px, 150px 373px",
+                    maskPosition: "left center, right center",
+                    maskRepeat: "no-repeat, no-repeat",
+                    WebkitMaskImage:
+                      "url(/pattern-left.svg), url(/pattern-right.svg)",
+                    WebkitMaskSize: "150px 373px, 150px 373px",
+                    WebkitMaskPosition: "left center, right center",
+                    WebkitMaskRepeat: "no-repeat, no-repeat",
+                  }}
+                >
+                  <Image
+                    src={offering.image}
+                    alt={offering.title.replace("\n", " ")}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
 
               {/* Subtitle */}
-              <div className="absolute bottom-11 left-0 right-0 z-10 px-8 text-center">
-                <p className="whitespace-pre-line font-rajdhani text-xl font-semibold leading-[1.4em] text-white">
+              <div className="flex shrink-0 items-center justify-center px-8 pb-11 pt-4 text-center">
+                <p className="whitespace-pre-line font-rajdhani text-[20px] font-semibold leading-[24px] text-white">
                   {offering.subtitle}
                 </p>
               </div>
