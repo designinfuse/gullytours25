@@ -5,6 +5,7 @@ import TourItem from "./TourItem";
 export default function CaseStudiesSection() {
   const caseStudies = [
     {
+      id: "coffee-cantonment-1",
       location: "BENGALURU",
       title: "Coffee & Cantonment",
       subtitle: "Weekend Walk: Church Street | 3 Hrs",
@@ -13,6 +14,7 @@ export default function CaseStudiesSection() {
       bgColor: "#4F8C7D",
     },
     {
+      id: "coffee-cantonment-2",
       location: "BENGALURU",
       title: "Coffee & Cantonment",
       subtitle: "Weekend Walk: Church Street | 3 Hrs",
@@ -21,6 +23,7 @@ export default function CaseStudiesSection() {
       bgColor: "#4F8C7D",
     },
     {
+      id: "coffee-cantonment-3",
       location: "BENGALURU",
       title: "Coffee & Cantonment",
       subtitle: "Weekend Walk: Church Street | 3 Hrs",
