@@ -27,6 +27,7 @@ export interface ApiTour {
   highlights?: string[] | ApiHighlight;
   itinerary?: string;
   inclusions?: string[];
+  booking_url?: string;
 }
 
 export interface ApiHighlight {

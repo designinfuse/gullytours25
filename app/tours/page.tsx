@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Newsletter from "@/components/Newsletter";
@@ -270,7 +271,9 @@ export default function ToursPage() {
           {!isLoading && filteredTours.length > 0 && (
             <div className="grid w-full grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3">
               {filteredTours.map((tour) => (
-                <TourItem key={tour.id} {...tour} />
+                <Link key={tour.id} href={`/tours/${tour.id}`}>
+                  <TourItem {...tour} />
+                </Link>
               ))}
             </div>
           )}

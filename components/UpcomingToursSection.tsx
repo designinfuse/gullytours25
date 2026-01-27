@@ -85,11 +85,11 @@ export default function UpcomingToursSection({ excludeTourId }: UpcomingToursSec
             return (
               <Link key={tour._id} href={`/tours/${tour._id}`}>
                 <TourItem
+                  id={tour._id}
                   location={location.toUpperCase()}
                   title={title}
                   subtitle={subtitle}
                   price={price}
-                  image={image}
                   bgColor={bgColor}
                 />
               </Link>

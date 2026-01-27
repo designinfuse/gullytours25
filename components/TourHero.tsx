@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import type { ApiTour } from "@/types/tour";
 
 interface TourHeroProps {
@@ -25,10 +24,10 @@ export default function TourHero({ tour }: TourHeroProps) {
                     <div className="absolute inset-0 bg-[#4F8C7D]" />
 
                     {/* Left: Image */}
-                    <div className="relative z-10 w-full md:w-[62%] p-4 md:p-8 md:pr-0">
-                        <div className="relative w-full">
+                    <div className="relative z-10 flex w-full p-4 md:w-[62%] md:p-8 md:pr-0">
+                        <div className="relative min-h-[300px] w-full flex-1">
                             <Image
-                                src="/malleshwaram.jpg"
+                                src={`/tours/${tour._id}/banner.jpg`}
                                 alt={tour.tour_name}
                                 fill
                                 className="object-cover"
@@ -95,9 +94,16 @@ export default function TourHero({ tour }: TourHeroProps) {
                                 </div>
 
                                 {/* Book Now Button */}
-                                <button className="px-[32px] h-[56px] rounded-full bg-[#262626] font-rajdhani text-lg font-semibold uppercase text-[#F5EF86] leading-none transition-transform hover:scale-[1.02] active:scale-95">
-                                    Book
-                                </button>
+                                {tour.booking_url && (
+                                    <a
+                                        href={tour.booking_url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex h-[56px] items-center justify-center rounded-full bg-[#262626] px-[32px] font-rajdhani text-lg font-semibold uppercase leading-none text-[#F5EF86] transition-transform hover:scale-[1.02] active:scale-95"
+                                    >
+                                        Book
+                                    </a>
+                                )}
                             </div>
                         </div>
                     </div>
