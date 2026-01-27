@@ -12,7 +12,7 @@ export default function TeamSection() {
   const teamMembers = [
     {
       name: "Vinay Parameswarappa",
-      image: "/team/vinay-parameswarappa.jpg",
+      image: "/team/vinay.jpeg",
       role: "TOUR\nLEAD",
       description: ["COPY WRITER", "POP CULTURE BUFF", "CHAI LOVER"],
     },

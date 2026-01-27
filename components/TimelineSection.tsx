@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface TimelineEvent {
@@ -9,11 +9,6 @@ interface TimelineEvent {
 }
 
 export default function TimelineSection() {
-  const slideUpVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   const timelineEvents: TimelineEvent[] = [
     {
       year: "2009",
@@ -22,12 +17,12 @@ export default function TimelineSection() {
     {
       year: "2010",
       description:
-        "Expanded our storytelling approach, introducing heritage walks that bring local history to life through personal narratives.",
+        "Secured our first major institutional client - Administrative Training Institute, Mysore. 5,000+ officers experienced our walks over 4 years.",
     },
     {
       year: "2011",
       description:
-        "Reached 1,000 walkers milestone, establishing ourselves as Mysore's premier walking tour experience.",
+        "Reached 1,000+ walkers milestone, establishing ourselves as Mysore's premier walking tour experience.",
     },
     {
       year: "2012",
@@ -76,104 +71,181 @@ export default function TimelineSection() {
     },
   ];
 
-  const [selectedYear, setSelectedYear] = useState(timelineEvents[0].year);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const activeYearRef = useRef<HTMLButtonElement>(null);
 
-  const getEventDescription = (year: string) => {
-    const event = timelineEvents.find((e) => e.year === year);
-    return event?.description || "";
+  useEffect(() => {
+    if (activeYearRef.current) {
+      activeYearRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [activeIndex]);
+
+  const prevEvent = () => {
+    setActiveIndex((prev) => (prev > 0 ? prev - 1 : timelineEvents.length - 1));
   };
 
+  const nextEvent = () => {
+    setActiveIndex((prev) => (prev < timelineEvents.length - 1 ? prev + 1 : 0));
+  };
+
+  const currentEvent = timelineEvents[activeIndex];
+
   return (
-    <section className="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-[#EDEDE7] px-4 py-20">
-      {/* Content Container */}
-      <div className="relative z-10 flex w-full max-w-[1368px] flex-col items-center gap-8">
+    <section className="relative w-full overflow-hidden bg-[#EDEDE7] px-6 py-20 md:px-12 md:py-24 lg:px-24">
+      <div className="mx-auto flex w-full max-w-[1368px] flex-col items-center gap-12 md:gap-16">
         {/* Title */}
-        <motion.div
-          className="flex w-full max-w-[777px] flex-col items-center gap-14"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          variants={slideUpVariants}
-        >
-          <h2 className="w-full text-center font-rajdhani text-6xl font-bold uppercase leading-none text-[#262626] md:text-7xl lg:text-[84px]">
+        <div className="text-center">
+          <h2 className="font-rajdhani text-[32px] font-bold uppercase leading-none text-[#262626] md:text-7xl lg:text-[84px]">
             A journey through
             <br />
             our gullies
           </h2>
-        </motion.div>
+        </div>
 
         {/* Timeline Container */}
-        <motion.div
-          className="relative w-full"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          variants={slideUpVariants}
-        >
-          {/* Timeline Visual */}
-          <div className="relative mb-5 flex w-full items-center justify-center">
-            <div className="relative h-[21px] w-full">
-              {/* Horizontal Line */}
-              <div className="absolute left-0 top-0 h-[20px] w-full bg-[#F5EF86]">
-                <div className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 border-t-1 border-[#262626] border-dashed" />
-              </div>
+        <div className="relative w-full">
+          {/* Desktop Timeline (Hidden on Mobile) */}
+          <div className="hidden w-full flex-col gap-8 md:flex">
+            {/* Horizontal Line Container */}
+            <div className="relative flex h-[21px] w-full items-start">
+              {/* The Yellow Bar */}
+              <div className="absolute h-[21px] w-full bg-[#F5EF86] z-0" />
+              {/* Dashed Line */}
+              <div className="absolute top-1/2 w-full border-t-2 border-dashed border-black/50 z-10" />
 
-              {/* Dots for each year */}
-              <div className="relative flex w-full items-center justify-between">
+              {/* Year Dots */}
+              <div className="relative flex w-full justify-between items-center px-4 z-20">
                 {timelineEvents.map((event, index) => (
                   <button
                     key={event.year}
-                    onClick={() => setSelectedYear(event.year)}
-                    className="group relative flex h-[20px] w-[20px] items-center justify-center transition-transform hover:scale-125"
-                    aria-label={`View ${event.year} milestone`}
+                    onClick={() => setActiveIndex(index)}
+                    className="relative flex flex-col items-center group"
                   >
-                    {/* Dot */}
                     <div
-                      className={`h-[20px] w-[20px] rounded-full transition-colors ${
-                        selectedYear === event.year
-                          ? "bg-[#262626]"
-                          : "bg-white"
-                      } border-2 border-[#262626]`}
+                      className={`h-5 w-5 rounded-full border-2 border-black transition-all ${index === activeIndex ? "scale-125 bg-black" : "bg-white"
+                        }`}
                     />
+                    <span className={`mt-4 font-rajdhani text-lg font-bold transition-opacity ${index === activeIndex ? "opacity-100" : "opacity-60"
+                      }`}>
+                      {event.year}
+                    </span>
                   </button>
                 ))}
               </div>
             </div>
+
+            {/* Description and Navigation (Desktop) */}
+            <div className="mt-8 flex w-full items-end justify-between">
+              <div className="max-w-[600px]">
+                <motion.p
+                  key={currentEvent.year}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="font-rajdhani text-2xl font-semibold leading-snug text-[#262626]"
+                >
+                  {currentEvent.description}
+                </motion.p>
+              </div>
+
+              {/* Navigation Arrows */}
+              <div className="flex gap-4">
+                <button
+                  onClick={prevEvent}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full bg-[#247DA6] transition-transform hover:scale-110 active:scale-95"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextEvent}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full bg-[#247DA6] transition-transform hover:scale-110 active:scale-95"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* Years Row */}
-          <div className="mb-12 flex w-full items-center justify-between px-1">
-            {timelineEvents.map((event) => (
-              <button
-                key={event.year}
-                onClick={() => setSelectedYear(event.year)}
-                className={`font-rajdhani text-xl transition-all hover:scale-110 ${
-                  selectedYear === event.year
-                    ? "font-bold text-[#262626]"
-                    : "font-semibold text-[#262626]"
-                }`}
-              >
-                {event.year}
-              </button>
-            ))}
-          </div>
-
-          {/* Description Text */}
-          <div className="flex w-full justify-start px-2">
-            <motion.p
-              key={selectedYear}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="max-w-[429px] font-rajdhani text-2xl font-semibold leading-[1.58em] text-black"
+          {/* Mobile Timeline (Hidden on Desktop) */}
+          <div className="flex w-full flex-col items-center gap-8 md:hidden">
+            {/* Circular Node Selector */}
+            <div
+              ref={scrollContainerRef}
+              className="relative flex w-full items-center overflow-x-auto pb-4 hide-scrollbar"
             >
-              {getEventDescription(selectedYear)}
-            </motion.p>
+              <div className="flex items-center gap-4 px-[40%]">
+                {timelineEvents.map((event, index) => {
+                  const isActive = index === activeIndex;
+                  return (
+                    <button
+                      key={event.year}
+                      ref={isActive ? activeYearRef : null}
+                      onClick={() => setActiveIndex(index)}
+                      className={`relative flex shrink-0 items-center justify-center rounded-full bg-[#F5EF86] transition-all duration-300 ${isActive ? "h-[80px] w-[80px]" : "h-[40px] w-[40px]"
+                        }`}
+                    >
+                      <span className={`font-rajdhani font-bold text-black ${isActive ? "text-2xl" : "text-sm"
+                        }`}>
+                        {event.year}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Description Text (Mobile) */}
+            <div className="w-full text-center">
+              <motion.p
+                key={`mobile-${currentEvent.year}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="font-rajdhani text-lg font-semibold leading-relaxed text-[#262626]"
+              >
+                {currentEvent.description}
+              </motion.p>
+            </div>
+
+            {/* Navigation Arrows (Mobile) */}
+            <div className="mt-4 flex gap-6">
+              <button
+                onClick={prevEvent}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#247DA6] text-white"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                onClick={nextEvent}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#247DA6] text-white"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
+
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }

@@ -9,6 +9,7 @@ import TeamSection from "@/components/TeamSection";
 import TimelineSection from "@/components/TimelineSection";
 import FamousFacesSection from "@/components/FamousFacesSection";
 import GiftAWalkSection from "@/components/GiftAWalkSection";
+import JoinTribeSection from "@/components/JoinTribeSection";
 
 export default function AboutPage() {
   return (
@@ -66,10 +67,13 @@ export default function AboutPage() {
       <TimelineSection />
 
       {/* Famous Faces Section */}
-      {/* <FamousFacesSection /> */}
+      <FamousFacesSection />
 
       {/* Gift A Walk Section */}
-      <GiftAWalkSection />
+      {/* <GiftAWalkSection /> */}
+
+      {/* Join Our Tribe Section */}
+      <JoinTribeSection />
 
       {/* Newsletter Section */}
       <Newsletter />

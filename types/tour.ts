@@ -24,6 +24,13 @@ export interface ApiTour {
   price: number;
   activity?: string;
   image?: string;
+  highlights?: string[] | ApiHighlight;
+  itinerary?: string;
+  inclusions?: string[];
+}
+
+export interface ApiHighlight {
+  items: string[];
 }
 
 export interface ApiResponse {
