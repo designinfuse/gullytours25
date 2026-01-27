@@ -13,6 +13,17 @@ export interface Tour {
   image: string;
   bgColor: string;
   category: TourCategory;
+  when?: string; // ISO date string for upcoming tours
+}
+
+export interface CalendarEvent {
+  summary: string;
+  start: {
+    dateTime: string;
+  };
+  end?: {
+    dateTime: string;
+  };
 }
 
 export interface ApiTour {

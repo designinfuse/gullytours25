@@ -27,7 +27,7 @@ export default function TourHero({ tour }: TourHeroProps) {
                     <div className="relative z-10 flex w-full p-4 md:w-[62%] md:p-8 md:pr-0">
                         <div className="relative min-h-[300px] w-full flex-1">
                             <Image
-                                src={`/tours/${tour._id}/banner.jpg`}
+                                src={`/tours/${encodeURIComponent(tour._id)}/banner.jpg`}
                                 alt={tour.tour_name}
                                 fill
                                 className="object-cover"

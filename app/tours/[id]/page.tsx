@@ -17,7 +17,9 @@ import type { ApiTour } from "@/types/tour";
 
 export default function TourDetailsPage() {
     const params = useParams();
-    const id = params.id as string;
+    const rawId = params.id as string;
+    // Decode the URL-encoded ID (e.g., "Best%20of%20Mysore" -> "Best of Mysore")
+    const id = decodeURIComponent(rawId);
     const [tour, setTour] = useState<ApiTour | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -30,17 +32,17 @@ export default function TourDetailsPage() {
             setError(null);
 
             try {
+                // Encode the ID for the API request
+                const encodedId = encodeURIComponent(id);
                 // Fetch from API
-                const response = await fetch(`https://gullytours-api.fly.dev/tours/${id}`);
+                const response = await fetch(`https://gullytours-api.fly.dev/tours/${encodedId}`);
 
                 if (!response.ok) {
                     // Fallback: try fetching all and finding it
                     const allResponse = await fetch("https://gullytours-api.fly.dev/tours/");
                     if (allResponse.ok) {
                         const data = await allResponse.json();
-                        console.log(data);
                         const found = data.docs.find((t: ApiTour) => t._id === id);
-                        console.log(found);
                         if (found) {
                             setTour(found);
                             return;

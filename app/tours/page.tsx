@@ -8,7 +8,7 @@ import Newsletter from "@/components/Newsletter";
 import TourItem from "@/components/TourItem";
 import TourFilterBar from "@/components/TourFilterBar";
 import TourSkeleton from "@/components/TourSkeleton";
-import type { Tour, ApiTour, ApiResponse } from "@/types/tour";
+import type { Tour, ApiTour, ApiResponse, CalendarEvent } from "@/types/tour";
 
 // Sample tours for Corporate, Educational, and Custom categories
 const SAMPLE_CORPORATE_TOURS: Tour[] = [
@@ -136,14 +136,15 @@ function transformApiTour(apiTour: ApiTour): Tour {
 export default function ToursPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [tours, setTours] = useState<Tour[]>([]);
+  const [upcomingTours, setUpcomingTours] = useState<Tour[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch tours from API on mount
+  // Fetch tours and upcoming tours from API on mount
   useEffect(() => {
     let isCancelled = false;
 
-    async function fetchAndMergeTours() {
+    async function fetchAllTours() {
       setIsLoading(true);
       setError(null);
 
@@ -151,21 +152,72 @@ export default function ToursPage() {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-        const response = await fetch("https://gullytours-api.fly.dev/tours/", {
-          signal: controller.signal,
-        });
+        // Fetch both regular tours and upcoming tours in parallel
+        const [toursResponse, upcomingResponse] = await Promise.all([
+          fetch("https://gullytours-api.fly.dev/tours/", {
+            signal: controller.signal,
+          }),
+          fetch("https://gullytours-api.fly.dev/tours/upcoming", {
+            signal: controller.signal,
+          }),
+        ]);
 
         clearTimeout(timeoutId);
 
-        if (!response.ok) {
-          throw new Error(`API Error: ${response.status}`);
+        if (!toursResponse.ok) {
+          throw new Error(`API Error: ${toursResponse.status}`);
         }
 
-        const data: ApiResponse = await response.json();
+        const toursData: ApiResponse = await toursResponse.json();
 
         if (!isCancelled) {
           // Transform API tours
-          const apiTours = data.docs.map(transformApiTour);
+          const apiTours = toursData.docs.map(transformApiTour);
+
+          // Process upcoming tours if available
+          if (upcomingResponse.ok) {
+            const calendarEvents: CalendarEvent[] = await upcomingResponse.json();
+            const now = new Date();
+
+            // Filter future events and sort by date
+            const futureEvents = calendarEvents
+              .filter((event) => new Date(event.start.dateTime) > now)
+              .sort(
+                (a, b) =>
+                  new Date(a.start.dateTime).getTime() -
+                  new Date(b.start.dateTime).getTime()
+              );
+
+            // Match calendar events with tour data
+            const matchedUpcoming: Tour[] = [];
+            futureEvents.forEach((event) => {
+              const matchedTour = toursData.docs.find(
+                (t) =>
+                  t.tour_name.trim().toLowerCase() ===
+                  event.summary.trim().toLowerCase()
+              );
+
+              if (matchedTour) {
+                matchedUpcoming.push({
+                  id: matchedTour._id,
+                  location:
+                    matchedTour.place.toLowerCase().includes("mysore") ||
+                    matchedTour.place.toLowerCase().includes("mysuru")
+                      ? "Mysore"
+                      : "Bangalore",
+                  title: matchedTour.tour_name,
+                  subtitle: `${matchedTour.activity || "Walk"} | ${matchedTour.duration}`,
+                  price: `From Rs${matchedTour.price}`,
+                  image: matchedTour.image || "/tours/default-weekend.jpg",
+                  bgColor: "#247DA6",
+                  category: "Weekend Tours",
+                  when: event.start.dateTime,
+                });
+              }
+            });
+
+            setUpcomingTours(matchedUpcoming);
+          }
 
           // Merge with sample data
           const allTours = [
@@ -199,7 +251,7 @@ export default function ToursPage() {
       }
     }
 
-    fetchAndMergeTours();
+    fetchAllTours();
 
     return () => {
       isCancelled = true;
@@ -208,11 +260,29 @@ export default function ToursPage() {
 
   // Filter tours based on active category
   const filteredTours = useMemo(() => {
-    if (activeCategory === "All") {
-      return tours;
+    // "Upcoming Tours" shows only the matched upcoming tours
+    if (activeCategory === "Upcoming Tours") {
+      return upcomingTours;
     }
-    return tours.filter((tour) => tour.category === activeCategory);
-  }, [tours, activeCategory]);
+
+    // Get unique IDs of tours that are in the upcoming list
+    const upcomingIds = upcomingTours.map((t) => t.id);
+
+    // For all other categories, exclude tours that have upcoming dates
+    const toursExcludingUpcoming = tours.filter(
+      (tour) => !upcomingIds.includes(tour.id)
+    );
+
+    // "All" shows all tours except upcoming tours
+    if (activeCategory === "All") {
+      return toursExcludingUpcoming;
+    }
+
+    // Other categories filter normally (also excluding upcoming)
+    return toursExcludingUpcoming.filter(
+      (tour) => tour.category === activeCategory
+    );
+  }, [tours, upcomingTours, activeCategory]);
 
   // Handle category change
   const handleCategoryChange = (category: string) => {
@@ -269,9 +339,15 @@ export default function ToursPage() {
 
           {/* Tours Grid */}
           {!isLoading && filteredTours.length > 0 && (
-            <div className="grid w-full grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3">
-              {filteredTours.map((tour) => (
-                <Link key={tour.id} href={`/tours/${tour.id}`}>
+            <div
+              key={activeCategory}
+              className="grid w-full grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3"
+            >
+              {filteredTours.map((tour, index) => (
+                <Link
+                  key={`${activeCategory}-${tour.id}-${index}`}
+                  href={`/tours/${tour.id}`}
+                >
                   <TourItem {...tour} />
                 </Link>
               ))}

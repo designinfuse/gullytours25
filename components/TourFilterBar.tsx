@@ -7,6 +7,7 @@ interface TourFilterBarProps {
 
 const CATEGORIES = [
   { id: "All", label: "All", bgColor: "#DE6D11" },
+  { id: "Upcoming Tours", label: "Upcoming Tours", bgColor: "#247DA6" },
   { id: "Weekend Tours", label: "Weekend Tours", bgColor: "#53A3B1" },
   {
     id: "Corporate Experiences",

@@ -10,6 +10,19 @@ interface TourItemProps {
   price: string;
   image?: string;
   bgColor?: string;
+  when?: string; // ISO date string for upcoming tours
+}
+
+// Format date for display
+function formatTourDate(isoDate: string): string {
+  const date = new Date(isoDate);
+  return date.toLocaleDateString("en-IN", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
 export default function TourItem({
@@ -19,9 +32,11 @@ export default function TourItem({
   subtitle,
   price,
   bgColor = "#DE6D11",
+  when,
 }: TourItemProps) {
   // Use tour-specific thumb image from public/tours/{id}/
-  const thumbImage = `/tours/${id}/thumb.jpg`;
+  // Encode the ID to handle spaces and special characters
+  const thumbImage = `/tours/${encodeURIComponent(id)}/thumb.jpg`;
 
   return (
     <div className="relative flex w-[440px] h-full flex-col cursor-pointer transition-transform hover:scale-[1.02]" style={{ backgroundColor: bgColor }}>
@@ -35,6 +50,15 @@ export default function TourItem({
             {location}
           </p>
         </div>
+
+        {/* Date Badge for Upcoming Tours */}
+        {when && (
+          <div className="absolute bottom-4 left-4 flex items-center justify-center bg-[#F5EF86] px-3 py-1.5">
+            <p className="font-rajdhani text-base font-semibold text-[#262626]">
+              {formatTourDate(when)}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Content Section - Flexible height */}
