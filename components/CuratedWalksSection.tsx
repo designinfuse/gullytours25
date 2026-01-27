@@ -40,7 +40,7 @@ export default function CuratedWalksSection() {
             variants={slideUpVariants}
           >
             <Image
-              src="/curated-walks-1-2cd54c.png"
+              src="/curated-walks-1.jpg"
               alt="Curated walk experience"
               fill
               className="rounded-lg object-cover"
@@ -55,7 +55,7 @@ export default function CuratedWalksSection() {
             variants={slideUpVariants}
           >
             <Image
-              src="/curated-walks-2-3ffb07.png"
+              src="/curated-walks-2.jpg"
               alt="Walking experience"
               fill
               className="rounded-lg object-cover"
@@ -70,7 +70,7 @@ export default function CuratedWalksSection() {
             variants={slideUpVariants}
           >
             <Image
-              src="/curated-walks-3-3a13e0.png"
+              src="/curated-walks-3.jpg"
               alt="Local experience"
               fill
               className="rounded-lg object-cover"
@@ -94,7 +94,7 @@ export default function CuratedWalksSection() {
           variants={slideUpVariants}
         >
           <Image
-            src="/curated-walks-1-2cd54c.png"
+            src="/curated-walks-1.jpg"
             alt="Curated walk experience"
             fill
             className="rounded-lg object-cover"
@@ -124,7 +124,7 @@ export default function CuratedWalksSection() {
 
         {/* Top Right Image with Border */}
         <motion.div
-          className="relative rotate-[90deg] col-span-2 col-start-11 row-span-2 row-start-1 h-64 w-64 justify-self-end rounded-lg border-[12px] border-[#F7F8DF] xl:h-72 xl:w-72"
+          className="relative col-span-2 col-start-11 row-span-2 row-start-1 h-64 w-64 justify-self-end rounded-lg border-[12px] border-[#F7F8DF] xl:h-72 xl:w-72"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
@@ -132,7 +132,7 @@ export default function CuratedWalksSection() {
           variants={slideUpVariants}
         >
           <Image
-            src="/curated-walks-large-1480a4.png"
+            src="/curated-walks-2.jpg"
             alt="Malleshwaram street view"
             fill
             className="rounded object-cover"
@@ -149,7 +149,7 @@ export default function CuratedWalksSection() {
           variants={slideUpVariants}
         >
           <Image
-            src="/curated-walks-2-3ffb07.png"
+            src="/curated-walks-3.jpg"
             alt="Walking experience"
             fill
             className="rounded-lg object-cover"
@@ -166,7 +166,7 @@ export default function CuratedWalksSection() {
           variants={slideUpVariants}
         >
           <Image
-            src="/curated-walks-3-3a13e0.png"
+            src="/curated-walks-4.jpg"
             alt="Local experience"
             fill
             className="rounded-lg object-cover"
@@ -183,7 +183,7 @@ export default function CuratedWalksSection() {
           variants={slideUpVariants}
         >
           <Image
-            src="/curated-walks-4-6b4dc2.png"
+            src="/curated-walks-5.jpg"
             alt="Cultural exploration"
             fill
             className="rounded-lg object-cover"

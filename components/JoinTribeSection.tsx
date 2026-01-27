@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 
-const imgFrame805 = "http://localhost:3845/assets/2d6c129a20697f5323a13f5628edcac7c8630498.svg";
-
 export default function JoinTribeSection() {
     const slideUpVariants = {
         hidden: { opacity: 0, y: 50 },
@@ -16,8 +14,8 @@ export default function JoinTribeSection() {
                 {/* Ticket Background with Ticket Stamp Edges */}
                 <div className="relative aspect-[1224/452] w-full min-h-[450px] overflow-hidden rounded-lg md:min-h-0">
                     <img
-                        src={imgFrame805}
-                        alt=""
+                        src="/join-tribe-card.svg"
+                        alt="Join our tribe decorative card"
                         className="absolute inset-0 h-full w-full object-fill"
                     />
 

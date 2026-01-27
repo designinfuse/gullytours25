@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function AboutContentSection() {
   const slideUpVariants = {
@@ -10,9 +11,23 @@ export default function AboutContentSection() {
 
   return (
     <section className="relative flex min-h-[950px] w-full items-center justify-center overflow-hidden bg-[#4F8C7D] px-4 py-20">
-      {/* Decorative Rectangles */}
-      <div className="absolute right-[109px] top-[101px] h-[200px] w-[200px] border-[8px] border-[#F5EF86] bg-[#D9D9D9]" />
-      <div className="absolute bottom-[55px] left-[97px] h-[200px] w-[200px] border-[8px] border-[#F5EF86] bg-[#D9D9D9]" />
+      {/* Decorative Images */}
+      <div className="absolute right-[109px] top-[101px] h-[200px] w-[200px] overflow-hidden border-[8px] border-[#F5EF86]">
+        <Image
+          src="/step-into-stories-1.webp"
+          alt="Gully Tours storytelling experience"
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="absolute bottom-[55px] left-[97px] h-[200px] w-[200px] overflow-hidden border-[8px] border-[#F5EF86]">
+        <Image
+          src="/step-into-stories-2.webp"
+          alt="Gully Tours community walk"
+          fill
+          className="object-cover"
+        />
+      </div>
 
       {/* Content */}
       <div className="relative z-10 flex w-full max-w-[904px] flex-col items-center gap-9">

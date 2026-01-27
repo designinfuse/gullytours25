@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 
-const imgFrame805 = "http://localhost:3845/assets/59331e8d0e84927878424068b70602b0966d5035.svg";
-
 export default function GiftAWalkSection() {
   const slideUpVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -16,8 +14,8 @@ export default function GiftAWalkSection() {
         {/* Ticket Background with Scalloped Edges and Decorations */}
         <div className="relative aspect-[1224/415] w-full min-h-[400px] overflow-hidden rounded-lg">
           <img
-            src={imgFrame805}
-            alt=""
+            src="/gift-a-walk-card.svg"
+            alt="Gift a walk decorative card"
             className="absolute inset-0 h-full w-full object-fill md:object-contain"
           />
 

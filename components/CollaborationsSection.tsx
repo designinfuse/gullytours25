@@ -27,7 +27,7 @@ export default function CollaborationsSection() {
     },
     {
       bgColor: "#B23F27",
-      image: "/collaboration-card-3.svg",
+      image: "/collab-vidhana-soudha.jpg",
       title: "EXCLUSIVE VIDHAN\nSOUDHA WALK",
       description:
         "From archives to avenues, we curated Bengaluru's first official heritage walk at Vidhana Soudha.",

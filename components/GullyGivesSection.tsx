@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function GullyGivesSection() {
   const slideUpVariants = {
@@ -10,10 +11,26 @@ export default function GullyGivesSection() {
 
   return (
     <section className="relative flex h-[950px] w-full items-center justify-center overflow-hidden bg-[#DE6D11] px-4 py-20">
-      {/* Decorative Rectangles */}
+      {/* Decorative Rectangle */}
       <div className="absolute left-[112px] top-[88px] h-[200px] w-[200px] bg-[#D9D9D9] opacity-30" />
-      <div className="absolute bottom-[117px] left-[70px] h-[200px] w-[200px] bg-[#D9D9D9] opacity-30" />
-      <div className="absolute right-[73px] top-[197px] h-[200px] w-[200px] bg-[#D9D9D9] opacity-30" />
+
+      {/* Decorative Images */}
+      <div className="absolute bottom-[117px] left-[70px] h-[200px] w-[200px] overflow-hidden">
+        <Image
+          src="/gully-cares-1.jpg"
+          alt="Gully Gives community walk"
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="absolute right-[73px] top-[197px] h-[200px] w-[200px] overflow-hidden">
+        <Image
+          src="/gully-cares-2.jpg"
+          alt="Gully Gives community engagement"
+          fill
+          className="object-cover"
+        />
+      </div>
 
       {/* Content */}
       <div className="flex w-full max-w-[857px] flex-col items-center gap-16">

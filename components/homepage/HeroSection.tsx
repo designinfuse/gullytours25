@@ -12,7 +12,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/malleshwaram.jpg"
+          src="/home-hero.jpg"
           alt="Malleshwaram"
           fill
           className="object-cover"

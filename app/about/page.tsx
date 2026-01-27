@@ -22,7 +22,7 @@ export default function AboutPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/about-hero-background.png"
+            src="/about-hero.jpg"
             alt="About Gully Tours"
             fill
             className="object-cover"
@@ -31,7 +31,7 @@ export default function AboutPage() {
         </div>
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/50 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 top-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent" />
 
         {/* Content */}
         <main className="relative flex min-h-screen flex-col items-center justify-start px-4 py-32">
