@@ -4,6 +4,38 @@ import Footer from "@/components/Footer";
 import RunningBand from "@/components/RunningBand";
 import CityExplorerIntroSection from "@/components/CityExplorerIntroSection";
 import WhatsProgramSection from "@/components/WhatsProgramSection";
+import WhatYoullGainSection from "@/components/WhatYoullGainSection";
+import WhoItIsForSection from "@/components/WhoItIsForSection";
+import RegisterInterestSection from "@/components/RegisterInterestSection";
+import FAQSection from "@/components/FAQSection";
+
+const cityExplorerFaqs = [
+  {
+    question: "Do I need to have a background in history?",
+    answer: "No, but an interest in it will certainly help",
+  },
+  {
+    question: "Is the program refundable?",
+    answer: "Unfortunately, we don't offer refunds.",
+  },
+  {
+    question: "Can I attend the whole program virtually?",
+    answer:
+      "Some sessions are more immersive when in person, so you will miss out on learning this virtually",
+  },
+  {
+    question: "Can I transfer my candidature in case I can't continue?",
+    answer: "Sorry, we can't do that",
+  },
+  {
+    question: "I didn't get selected in this session. Can I reapply?",
+    answer: "You're always welcome to in the future",
+  },
+  {
+    question: "Will I get a certificate for this?",
+    answer: "Yes",
+  },
+];
 
 export default function CityExplorerPage() {
   return (
@@ -17,7 +49,7 @@ export default function CityExplorerPage() {
         <div className="absolute inset-0 bg-[#D9D9D9]">
           <Image
             src="/city-explorer-hero-background.png"
-            alt="City Explorer"
+            alt="Urban Explorer"
             fill
             className="object-cover"
             priority
@@ -51,6 +83,22 @@ export default function CityExplorerPage() {
 
       {/* What's Program Section */}
       <WhatsProgramSection />
+
+      {/* What You'll Gain Section */}
+      <WhatYoullGainSection />
+
+      {/* Who It Is For Section */}
+      <WhoItIsForSection />
+
+      {/* Register Interest Section */}
+      <RegisterInterestSection />
+
+      {/* FAQ Section */}
+      <FAQSection
+        faqs={cityExplorerFaqs}
+        headerBgColor="#4C9F7C"
+        headerTextColor="#F5EF86"
+      />
 
       {/* Footer */}
       <Footer />

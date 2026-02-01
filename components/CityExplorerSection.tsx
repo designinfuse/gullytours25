@@ -45,7 +45,7 @@ export default function CityExplorerSection() {
             <div className="flex flex-col items-center gap-3 bg-[#F7F8DF] px-6 py-6">
               <div className="h-0.5 w-full border-t-2 border-dashed border-black" />
               <h2 className="text-center font-rajdhani text-4xl font-bold uppercase leading-tight text-black sm:text-5xl">
-                City Explorer
+                Urban Explorer
                 <br />
                 Program
               </h2>
@@ -64,7 +64,7 @@ export default function CityExplorerSection() {
           >
             <Image
               src="/city-explorer-main.svg"
-              alt="City Explorer Program"
+              alt="Urban Explorer Program"
               fill
               className="object-cover"
             />
@@ -129,7 +129,7 @@ export default function CityExplorerSection() {
             <div className="relative aspect-[645/617] w-full">
               <Image
                 src="/city-explorer-main.svg"
-                alt="City Explorer Program"
+                alt="Urban Explorer Program"
                 fill
                 className="object-cover"
               />
@@ -148,7 +148,7 @@ export default function CityExplorerSection() {
             <div className="flex flex-col items-center gap-3 bg-[#F7F8DF] px-6 py-6">
               <div className="h-0.5 w-full border-t-2 border-dashed border-black" />
               <h2 className="text-center font-rajdhani text-4xl font-bold uppercase leading-tight text-black xl:text-[48px] xl:leading-[48px]">
-                City Explorer
+                Urban Explorer
                 <br />
                 Program
               </h2>

@@ -4,6 +4,14 @@ export type TourCategory =
   | "Educational Walks"
   | "Custom Walks";
 
+// Consistent colors for tour categories across the app
+export const tourCategoryColors: Record<TourCategory, string> = {
+  "Weekend Tours": "#46869F",
+  "Corporate Experiences": "#B23F27",
+  "Educational Walks": "#DE6D11",
+  "Custom Walks": "#4F8C7D",
+};
+
 export interface Tour {
   id: string;
   location: string;

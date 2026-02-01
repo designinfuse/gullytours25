@@ -12,7 +12,7 @@ export default function Navbar() {
   const navItems = [
     { label: "TOURS & EXPERIENCES", href: "/tours" },
     { label: "ABOUT", href: "/about" },
-    { label: "CITY EXPLORER", href: "/city-explorer" },
+    { label: "URBAN EXPLORER", href: "/city-explorer" },
     { label: "COLLABORATION", href: "/collaboration" },
     { label: "CONTACT", href: "/contact" },
   ];

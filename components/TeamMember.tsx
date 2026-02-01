@@ -56,7 +56,7 @@ export default function TeamMember({
               src={image}
               alt={name}
               fill
-              className="object-cover"
+              className="object-cover object-[0%_25%]"
               sizes="(max-width: 768px) 100vw, 286px"
             />
           ) : (

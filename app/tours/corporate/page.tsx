@@ -71,11 +71,11 @@ export default function CorporateWalksPage() {
       <HowItWorksSection />
 
       {/* Conferences Section */}
-      {/* <ConferencesSection /> */}
-      <CorporateSection />
+      <ConferencesSection />
+      {/* <CorporateSection /> */}
 
       {/* Case Studies Section */}
-      <CaseStudiesSection />
+      <CaseStudiesSection category="corporate" />
 
       {/* Testimonial Section */}
       <TestimonialSection />

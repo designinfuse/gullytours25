@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import TourItem from "./TourItem";
 import type { ApiTour } from "@/types/tour";
+import { tourCategoryColors } from "@/types/tour";
 
 interface UpcomingToursSectionProps {
   excludeTourId?: string;
@@ -78,9 +79,8 @@ export default function UpcomingToursSection({ excludeTourId }: UpcomingToursSec
               : "Price TBD";
             const image = tour.image || "/malleshwaram.jpg";
 
-            // Generate random color (you can adjust these colors)
-            const colors = ["#DE6D11", "#247DA6", "#D62828", "#2A9D8F", "#E76F51"];
-            const bgColor = colors[Math.floor(Math.random() * colors.length)];
+            // Use consistent Weekend Tours color
+            const bgColor = tourCategoryColors["Weekend Tours"];
 
             return (
               <Link key={tour._id} href={`/tours/${tour._id}`}>

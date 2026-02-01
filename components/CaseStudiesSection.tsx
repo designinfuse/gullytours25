@@ -1,50 +1,71 @@
 "use client";
 
-import TourItem from "./TourItem";
+import Link from "next/link";
+import CaseStudyItem from "./CaseStudyItem";
+import {
+  getCaseStudiesByCategory,
+  categoryColors,
+  type CaseStudyCategory,
+  type CaseStudy,
+} from "@/data/caseStudies";
+import { useMemo } from "react";
 
-export default function CaseStudiesSection() {
-  const caseStudies = [
-    {
-      id: "coffee-cantonment-1",
-      location: "BENGALURU",
-      title: "Coffee & Cantonment",
-      subtitle: "Weekend Walk: Church Street | 3 Hrs",
-      price: "From Rs1500",
-      image: "/tours/coffee-cantonment.jpg",
-      bgColor: "#4F8C7D",
-    },
-    {
-      id: "coffee-cantonment-2",
-      location: "BENGALURU",
-      title: "Coffee & Cantonment",
-      subtitle: "Weekend Walk: Church Street | 3 Hrs",
-      price: "From Rs1500",
-      image: "/tours/coffee-cantonment.jpg",
-      bgColor: "#4F8C7D",
-    },
-    {
-      id: "coffee-cantonment-3",
-      location: "BENGALURU",
-      title: "Coffee & Cantonment",
-      subtitle: "Weekend Walk: Church Street | 3 Hrs",
-      price: "From Rs1500",
-      image: "/tours/coffee-cantonment.jpg",
-      bgColor: "#4F8C7D",
-    },
-  ];
+interface CaseStudiesSectionProps {
+  category?: CaseStudyCategory;
+  count?: number;
+  title?: string;
+}
+
+// Helper to shuffle and pick random items
+function getRandomItems<T>(array: T[], count: number): T[] {
+  const shuffled = [...array].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
+export default function CaseStudiesSection({
+  category,
+  count = 3,
+  title = "Case Studies",
+}: CaseStudiesSectionProps) {
+  // Get case studies filtered by category if provided
+  const filteredCaseStudies = useMemo(() => {
+    if (category) {
+      return getCaseStudiesByCategory(category);
+    }
+    return [];
+  }, [category]);
+
+  // Pick random case studies
+  const displayedCaseStudies = useMemo(() => {
+    return getRandomItems(filteredCaseStudies, count);
+  }, [filteredCaseStudies, count]);
+
+  // Get the color for this category
+  const bgColor = category ? categoryColors[category] : undefined;
+
+  // Don't render if no case studies
+  if (displayedCaseStudies.length === 0) {
+    return null;
+  }
 
   return (
     <section className="w-full px-6 py-16 md:px-12 md:py-20 lg:px-24 lg:py-24">
       <div className="mx-auto flex max-w-[1368px] flex-col items-center gap-16">
         {/* Title */}
         <h2 className="font-rajdhani text-[64px] font-bold uppercase leading-[1.026em] text-black md:text-[78px]">
-          Case Studies
+          {title}
         </h2>
 
-        {/* Tour Cards Grid */}
-        <div className="flex w-full flex-wrap items-center justify-center gap-6">
-          {caseStudies.map((study, index) => (
-            <TourItem key={index} {...study} />
+        {/* Case Study Cards Grid */}
+        <div className="flex w-full flex-wrap items-stretch justify-center gap-6">
+          {displayedCaseStudies.map((caseStudy) => (
+            <Link
+              key={caseStudy.id}
+              href={`/case-studies/${caseStudy.slug}`}
+              className="flex"
+            >
+              <CaseStudyItem caseStudy={caseStudy} bgColor={bgColor} />
+            </Link>
           ))}
         </div>
       </div>

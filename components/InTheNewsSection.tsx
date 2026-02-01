@@ -1,73 +1,94 @@
 "use client";
 
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
+import PerforatedCard from "./PerforatedCard";
 
-const newsCards = [
+interface NewsCardData {
+  title: string;
+  link: string;
+  date: string;
+}
+
+const newsCards: NewsCardData[] = [
   {
-    title: "Ken's Article - The Gifting Guide 2024",
-    date: "15.11.2025",
+    title: "The Ken's 2024 Gifting Guide",
+    link: "https://the-ken.com/gifting-guide-2024/",
+    date: "2024",
   },
   {
-    title: "The Print Article -",
-    date: "15.11.2025",
+    title: "The Print - Bengaluru's Death by Dosa Walk",
+    link: "https://www.youtube.com/watch?v=8t8NxzOe1dU",
+    date: "8th May 2024",
   },
   {
-    title: "South China - Morning Post -\nWomen only night walks",
-    date: "15.11.2025",
+    title: "South China Morning Post - Women Only Night Walks",
+    link: "https://www.scmp.com/lifestyle/travel-leisure/article/3216301/how-night-walks-women-india-are-allowing-groups-tread-fearlessly-streets-most-would-otherwise-avoid",
+    date: "10th April 2023",
   },
   {
-    title: "Ken's Article - The Gifting Guide 2024",
-    date: "15.11.2025",
+    title: "Economic Times - Microhistory Goes Mainstream",
+    link: "https://economictimes.indiatimes.com/news/india/microhistory-goes-mainstream-how-instagram-and-heritage-walks-make-the-past-personal/articleshow/123742881.cms?from=mdr",
+    date: "September 7th 2025",
   },
   {
-    title: "The Print Article -",
-    date: "15.11.2025",
+    title: "The Hindu - About Whitefield",
+    link: "https://www.thehindu.com/news/cities/bangalore/whitefield-between-a-colonial-past-and-a-post-liberalisation-future/article69111651.ece",
+    date: "January 20th 2025",
   },
   {
-    title: "South China - Morning Post -\nWomen only night walks",
-    date: "15.11.2025",
+    title: "The Hindu - How walking tours can help you connect better with Bengaluru",
+    link: "https://www.thehindu.com/news/cities/bangalore/how-walking-tours-can-help-you-connect-better-with-bengaluru/article68284701.ece",
+    date: "Jan 14th 2024",
   },
 ];
 
-const NewsCard = ({ title, date }: { title: string; date: string }) => {
+const NewsCard = ({ title, link, date }: NewsCardData) => {
   return (
-    <div className="relative group h-[240px] w-full transition-transform duration-300 hover:scale-[1.02]">
-      {/* Ticket Shape with clip-path */}
-      <div
-        className="absolute inset-0 bg-[#BFD3A0]"
-        style={{
-          clipPath: "polygon(0% 10%, 2% 10%, 2% 15%, 0% 15%, 0% 20%, 2% 20%, 2% 25%, 0% 25%, 0% 30%, 2% 30%, 2% 35%, 0% 35%, 0% 40%, 2% 40%, 2% 45%, 0% 45%, 0% 50%, 2% 50%, 2% 55%, 0% 55%, 0% 60%, 2% 60%, 2% 65%, 0% 65%, 0% 70%, 2% 70%, 2% 75%, 0% 75%, 0% 80%, 2% 80%, 2% 85%, 0% 85%, 0% 90%, 2% 90%, 2% 95%, 0% 95%, 0% 100%, 100% 100%, 100% 95%, 98% 95%, 98% 90%, 100% 90%, 100% 85%, 98% 85%, 98% 80%, 100% 80%, 100% 75%, 98% 75%, 98% 70%, 100% 70%, 100% 65%, 98% 65%, 98% 60%, 100% 60%, 100% 55%, 98% 55%, 98% 50%, 100% 50%, 100% 45%, 98% 45%, 98% 40%, 100% 40%, 100% 35%, 98% 35%, 98% 30%, 100% 30%, 100% 25%, 98% 25%, 98% 20%, 100% 20%, 100% 15%, 98% 15%, 98% 10%, 100% 10%, 100% 0%, 0% 0%)",
-          WebkitClipPath: "polygon(0% 10%, 2% 10%, 2% 15%, 0% 15%, 0% 20%, 2% 20%, 2% 25%, 0% 25%, 0% 30%, 2% 30%, 2% 35%, 0% 35%, 0% 40%, 2% 40%, 2% 45%, 0% 45%, 0% 50%, 2% 50%, 2% 55%, 0% 55%, 0% 60%, 2% 60%, 2% 65%, 0% 65%, 0% 70%, 2% 70%, 2% 75%, 0% 75%, 0% 80%, 2% 80%, 2% 85%, 0% 85%, 0% 90%, 2% 90%, 2% 95%, 0% 95%, 0% 100%, 100% 100%, 100% 95%, 98% 95%, 98% 90%, 100% 90%, 100% 85%, 98% 85%, 98% 80%, 100% 80%, 100% 75%, 98% 75%, 98% 70%, 100% 70%, 100% 65%, 98% 65%, 98% 60%, 100% 60%, 100% 55%, 98% 55%, 98% 50%, 100% 50%, 100% 45%, 98% 45%, 98% 40%, 100% 40%, 100% 35%, 98% 35%, 98% 30%, 100% 30%, 100% 25%, 98% 25%, 98% 20%, 100% 20%, 100% 15%, 98% 15%, 98% 10%, 100% 10%, 100% 0%, 0% 0%)",
-        }}
-      />
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block h-[240px] w-full transition-transform duration-300 hover:scale-[1.02]"
+    >
+      <PerforatedCard
+        bgColor="#BFD3A0"
+        edges={{ left: true, right: true }}
+        perforationSize={6}
+        perforationSpacing={18}
+        className="h-full w-full"
+      >
+        <div className="relative flex h-full w-full flex-col">
+          {/* Inner Borders */}
+          <div className="pointer-events-none absolute inset-4 border-2 border-white/30" />
+          <div className="pointer-events-none absolute inset-5 border border-white/20" />
 
-      {/* Ticket Inner Border */}
-      <div className="pointer-events-none absolute inset-5 border-2 border-white/30 z-10" />
-      <div className="pointer-events-none absolute inset-6 border border-white/20 z-10" />
+          {/* Content */}
+          <div className="flex flex-1 flex-col items-center justify-center p-10 text-center">
+            <p className="whitespace-pre-line font-rajdhani text-xl font-bold uppercase leading-tight text-black md:text-2xl lg:text-[22px]">
+              {title}
+            </p>
+          </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center p-10 text-center">
-        <p className="whitespace-pre-line font-rajdhani text-xl font-bold uppercase leading-tight text-black md:text-2xl lg:text-[22px]">
-          {title}
-        </p>
-      </div>
-
-      <div className="absolute right-8 bottom-8 z-10">
-        <p className="font-rajdhani text-sm font-semibold uppercase text-black/50">
-          {date}
-        </p>
-      </div>
-    </div>
+          {/* Date */}
+          <div className="absolute bottom-6 right-6">
+            <p className="font-rajdhani text-sm font-semibold uppercase text-black/50">
+              {date}
+            </p>
+          </div>
+        </div>
+      </PerforatedCard>
+    </a>
   );
 };
 
 export default function InTheNewsSection() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
-    loop: true,
+    loop: false,
     slidesToScroll: 1,
+    containScroll: "trimSnaps",
   });
 
   const scrollPrev = useCallback(() => {
@@ -99,13 +120,13 @@ export default function InTheNewsSection() {
 
       {/* Carousel Container */}
       <div className="relative w-full overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6 lg:gap-8">
+        <div className="flex gap-6 pr-6 lg:gap-8 lg:pr-8">
           {newsCards.map((card, index) => (
             <div
               key={index}
               className="min-w-0 flex-[0_0_100%] md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(33.333%-22px)]"
             >
-              <NewsCard title={card.title} date={card.date} />
+              <NewsCard title={card.title} link={card.link} date={card.date} />
             </div>
           ))}
         </div>

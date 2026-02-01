@@ -8,107 +8,69 @@ import Newsletter from "@/components/Newsletter";
 import TourItem from "@/components/TourItem";
 import TourFilterBar from "@/components/TourFilterBar";
 import TourSkeleton from "@/components/TourSkeleton";
-import type { Tour, ApiTour, ApiResponse, CalendarEvent } from "@/types/tour";
+import type { Tour, ApiTour, ApiResponse, CalendarEvent, TourCategory } from "@/types/tour";
+import { tourCategoryColors } from "@/types/tour";
+import {
+  getCaseStudiesByCategory,
+  type CaseStudy,
+} from "@/data/caseStudies";
 
-// Sample tours for Corporate, Educational, and Custom categories
-const SAMPLE_CORPORATE_TOURS: Tour[] = [
-  {
-    id: "corp-1",
-    location: "Bangalore",
-    title: "Innovation District Walk",
-    subtitle: "Corporate Experience: Team Building & History | 2.5 Hrs",
-    price: "From Rs2500",
-    image: "/tours/corporate-innovation.jpg",
-    bgColor: "#B23F27",
-    category: "Corporate Experiences",
-  },
-  {
-    id: "corp-2",
-    location: "Bangalore",
-    title: "Startup Ecosystem Tour",
-    subtitle: "Corporate Experience: Networking & Insights | 3 Hrs",
-    price: "From Rs3000",
-    image: "/tours/corporate-startup.jpg",
-    bgColor: "#B23F27",
-    category: "Corporate Experiences",
-  },
-  {
-    id: "corp-3",
-    location: "Mysore",
-    title: "Heritage Leadership Walk",
-    subtitle: "Corporate Experience: Leadership & Culture | 3 Hrs",
-    price: "From Rs2800",
-    image: "/tours/corporate-heritage.jpg",
-    bgColor: "#B23F27",
-    category: "Corporate Experiences",
-  },
-];
+// Map case study categories to tour categories
+const caseStudyCategoryToTourCategory: Record<string, TourCategory> = {
+  corporate: "Corporate Experiences",
+  conference: "Custom Walks",
+  educational: "Educational Walks",
+  collaboration: "Custom Walks",
+  custom: "Custom Walks",
+  social: "Custom Walks",
+};
 
-const SAMPLE_EDUCATIONAL_TOURS: Tour[] = [
-  {
-    id: "edu-1",
-    location: "Bangalore",
-    title: "Architecture & Urban Planning",
-    subtitle: "Educational Walk: Design History | 3 Hrs",
-    price: "From Rs1800",
-    image: "/tours/educational-architecture.jpg",
-    bgColor: "#DE6D11",
-    category: "Educational Walks",
-  },
-  {
-    id: "edu-2",
-    location: "Bangalore",
-    title: "Colonial History Trail",
-    subtitle: "Educational Walk: British Legacy & Independence | 2.5 Hrs",
-    price: "From Rs1500",
-    image: "/tours/educational-colonial.jpg",
-    bgColor: "#DE6D11",
-    category: "Educational Walks",
-  },
-  {
-    id: "edu-3",
-    location: "Mysore",
-    title: "Arts & Crafts Workshop Walk",
-    subtitle: "Educational Walk: Traditional Crafts | 3.5 Hrs",
-    price: "From Rs2000",
-    image: "/tours/educational-crafts.jpg",
-    bgColor: "#DE6D11",
-    category: "Educational Walks",
-  },
-];
+// Transform case study to Tour format
+function transformCaseStudyToTour(caseStudy: CaseStudy): Tour {
+  const tourCategory = caseStudyCategoryToTourCategory[caseStudy.category] || "Custom Walks";
 
-const SAMPLE_CUSTOM_TOURS: Tour[] = [
-  {
-    id: "custom-1",
-    location: "Bangalore",
-    title: "Private Culinary Journey",
-    subtitle: "Custom Walk: Personalized Food Trail | 2-4 Hrs",
-    price: "From Rs3500",
-    image: "/tours/custom-culinary.jpg",
-    bgColor: "#4F8C7D",
-    category: "Custom Walks",
-  },
-  {
-    id: "custom-2",
-    location: "Bangalore",
-    title: "Photography Walk",
-    subtitle: "Custom Walk: Street & Heritage Photography | 3 Hrs",
-    price: "From Rs2500",
-    image: "/tours/custom-photography.jpg",
-    bgColor: "#4F8C7D",
-    category: "Custom Walks",
-  },
-  {
-    id: "custom-3",
-    location: "Mysore",
-    title: "Family Heritage Experience",
-    subtitle: "Custom Walk: Tailored for Families | 2.5 Hrs",
-    price: "From Rs4000",
-    image: "/tours/custom-family.jpg",
-    bgColor: "#4F8C7D",
-    category: "Custom Walks",
-  },
-];
+  // Omit subtitle for Custom Walks category
+  const subtitle = tourCategory === "Custom Walks"
+    ? caseStudy.client
+    : `${caseStudy.client} | ${caseStudy.experienceTailored}`;
+
+  return {
+    id: `case-study-${caseStudy.slug}`,
+    location: "Bangalore", // Default location for case studies
+    title: caseStudy.title,
+    subtitle,
+    price: "Custom Pricing",
+    image: caseStudy.image || "/tours/default-case-study.jpg",
+    bgColor: tourCategoryColors[tourCategory],
+    category: tourCategory,
+  };
+}
+
+// Get case studies as tours
+function getCaseStudyTours(): Tour[] {
+  const corporateStudies = getCaseStudiesByCategory("corporate").map(transformCaseStudyToTour);
+  const educationalStudies = getCaseStudiesByCategory("educational").map(transformCaseStudyToTour);
+  const customStudies = [
+    ...getCaseStudiesByCategory("custom"),
+    ...getCaseStudiesByCategory("conference"),
+    ...getCaseStudiesByCategory("collaboration"),
+    ...getCaseStudiesByCategory("social"),
+  ].map(transformCaseStudyToTour);
+
+  return [...corporateStudies, ...educationalStudies, ...customStudies];
+}
+
+// Tours to hide from the listing
+const hiddenTourIds = new Set([
+  "bangalore-biodiversity-trail",
+  "cantt-by-night-maverick-farmer",
+  "cantt-by-night-womens-only",
+  "Culinary Tour",
+  "death-by-dosa-womens-only",
+  "the-nandi-valley-walk",
+  "the-soba-walk",
+  "the-yelahanka-diaries",
+]);
 
 // Transform API tour to our Tour format
 function transformApiTour(apiTour: ApiTour): Tour {
@@ -127,8 +89,8 @@ function transformApiTour(apiTour: ApiTour): Tour {
     title: apiTour.tour_name,
     subtitle: `Weekend Walk: ${apiTour.activity || "Exploration"} | ${apiTour.duration}`,
     price: `From Rs${apiTour.price}`,
-    image: apiTour.image || "/tours/default-weekend.jpg",
-    bgColor: "#53A3B1",
+    image: apiTour.image || `/tours/${apiTour._id}/thumb.jpg`,
+    bgColor: tourCategoryColors["Weekend Tours"],
     category: "Weekend Tours",
   };
 }
@@ -171,8 +133,10 @@ export default function ToursPage() {
         const toursData: ApiResponse = await toursResponse.json();
 
         if (!isCancelled) {
-          // Transform API tours
-          const apiTours = toursData.docs.map(transformApiTour);
+          // Transform API tours (excluding hidden ones)
+          const apiTours = toursData.docs
+            .filter((tour) => !hiddenTourIds.has(tour._id))
+            .map(transformApiTour);
 
           // Process upcoming tours if available
           if (upcomingResponse.ok) {
@@ -197,7 +161,7 @@ export default function ToursPage() {
                   event.summary.trim().toLowerCase()
               );
 
-              if (matchedTour) {
+              if (matchedTour && !hiddenTourIds.has(matchedTour._id)) {
                 matchedUpcoming.push({
                   id: matchedTour._id,
                   location:
@@ -208,7 +172,7 @@ export default function ToursPage() {
                   title: matchedTour.tour_name,
                   subtitle: `${matchedTour.activity || "Walk"} | ${matchedTour.duration}`,
                   price: `From Rs${matchedTour.price}`,
-                  image: matchedTour.image || "/tours/default-weekend.jpg",
+                  image: matchedTour.image || `/tours/${matchedTour._id}/thumb.jpg`,
                   bgColor: "#247DA6",
                   category: "Weekend Tours",
                   when: event.start.dateTime,
@@ -219,13 +183,9 @@ export default function ToursPage() {
             setUpcomingTours(matchedUpcoming);
           }
 
-          // Merge with sample data
-          const allTours = [
-            ...apiTours,
-            // ...SAMPLE_CORPORATE_TOURS,
-            // ...SAMPLE_EDUCATIONAL_TOURS,
-            // ...SAMPLE_CUSTOM_TOURS,
-          ];
+          // Merge API tours with case study tours
+          const caseStudyTours = getCaseStudyTours();
+          const allTours = [...apiTours, ...caseStudyTours];
 
           setTours(allTours);
         }
@@ -237,12 +197,8 @@ export default function ToursPage() {
             err instanceof Error ? err.message : "Failed to load tours"
           );
 
-          // Fallback to sample data only
-          setTours([
-            ...SAMPLE_CORPORATE_TOURS,
-            ...SAMPLE_EDUCATIONAL_TOURS,
-            ...SAMPLE_CUSTOM_TOURS,
-          ]);
+          // Fallback to case study tours only
+          setTours(getCaseStudyTours());
         }
       } finally {
         if (!isCancelled) {
@@ -343,14 +299,22 @@ export default function ToursPage() {
               key={activeCategory}
               className="grid w-full grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3"
             >
-              {filteredTours.map((tour, index) => (
-                <Link
-                  key={`${activeCategory}-${tour.id}-${index}`}
-                  href={`/tours/${tour.id}`}
-                >
-                  <TourItem {...tour} />
-                </Link>
-              ))}
+              {filteredTours.map((tour, index) => {
+                // Check if this is a case study tour
+                const isCaseStudy = tour.id.startsWith("case-study-");
+                const href = isCaseStudy
+                  ? `/case-studies/${tour.id.replace("case-study-", "")}`
+                  : `/tours/${tour.id}`;
+
+                return (
+                  <Link
+                    key={`${activeCategory}-${tour.id}-${index}`}
+                    href={href}
+                  >
+                    <TourItem {...tour} />
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

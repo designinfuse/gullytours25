@@ -7,54 +7,83 @@ interface FAQItem {
   answer: string;
 }
 
-export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+interface FAQSectionProps {
+  faqs?: FAQItem[];
+  title?: string;
+  subtitle?: string | React.ReactNode;
+  headerBgColor?: string;
+  headerTextColor?: string;
+}
 
-  const faqs: FAQItem[] = [
-    {
-      question: "What makes a Gully Tour different from other city tours?",
-      answer:
-        "Gully Tours focuses on the hidden stories, local culture, and authentic experiences that most city tours miss. We take you through the gullies (narrow lanes) to discover the heart and soul of the city.",
-    },
-    {
-      question: "How long does a typical tour last, and how much walking is involved?",
-      answer:
-        "Most of our tours last between 2-4 hours and involve moderate walking. We keep a comfortable pace with regular stops for stories, food, and photos.",
-    },
-    {
-      question: "Do I need to book in advance, or can I just show up?",
-      answer:
-        "We recommend booking in advance to secure your spot, especially for weekend tours. Walk-ins are welcome subject to availability.",
-    },
-    {
-      question:
-        "Are the tours suitable for kids, seniors, or people with accessibility needs?",
-      answer:
-        "Yes! Most of our tours are family-friendly and can be adapted for different age groups and mobility levels. Please let us know your specific needs when booking.",
-    },
-    {
-      question: "What should I bring along for a tour (clothes, shoes, water, etc.)?",
-      answer:
-        "We recommend comfortable walking shoes, weather-appropriate clothing, a water bottle, and a curious mind! Sunscreen and a hat are also recommended for daytime tours.",
-    },
-  ];
+const defaultFaqs: FAQItem[] = [
+  {
+    question: "What makes a Gully Tour different from other city tours?",
+    answer:
+      "Gully Tours focuses on the hidden stories, local culture, and authentic experiences that most city tours miss. We take you through the gullies (narrow lanes) to discover the heart and soul of the city.",
+  },
+  {
+    question: "How long does a typical tour last, and how much walking is involved?",
+    answer:
+      "Most of our tours last between 2-4 hours and involve moderate walking. We keep a comfortable pace with regular stops for stories, food, and photos.",
+  },
+  {
+    question: "Do I need to book in advance, or can I just show up?",
+    answer:
+      "We recommend booking in advance to secure your spot, especially for weekend tours. Walk-ins are welcome subject to availability.",
+  },
+  {
+    question:
+      "Are the tours suitable for kids, seniors, or people with accessibility needs?",
+    answer:
+      "Yes! Most of our tours are family-friendly and can be adapted for different age groups and mobility levels. Please let us know your specific needs when booking.",
+  },
+  {
+    question: "What should I bring along for a tour (clothes, shoes, water, etc.)?",
+    answer:
+      "We recommend comfortable walking shoes, weather-appropriate clothing, a water bottle, and a curious mind! Sunscreen and a hat are also recommended for daytime tours.",
+  },
+];
+
+export default function FAQSection({
+  faqs = defaultFaqs,
+  title = "FAQ's",
+  subtitle,
+  headerBgColor = "#4F8C7D",
+  headerTextColor = "#F5EF86",
+}: FAQSectionProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const defaultSubtitle = (
+    <>
+      Here is a little more about how we operate.
+      <br />
+      Got a more specific question? Feel free to get in touch.
+    </>
+  );
+
   return (
     <section className="relative w-full overflow-hidden bg-white">
-      {/* Teal Header Section */}
-      <div className="w-full bg-[#4F8C7D] px-6 py-16 md:px-12 md:py-20 lg:px-24">
+      {/* Header Section */}
+      <div
+        className="w-full px-6 py-16 md:px-12 md:py-20 lg:px-24"
+        style={{ backgroundColor: headerBgColor }}
+      >
         <div className="mx-auto max-w-[714px] text-center">
-          <h2 className="mb-5 font-rajdhani text-[64px] font-bold uppercase leading-[1em] text-white md:text-[84px]">
-            FAQ&apos;s
+          <h2
+            className="mb-5 font-rajdhani text-[64px] font-bold uppercase leading-[1em] md:text-[84px]"
+            style={{ color: headerTextColor }}
+          >
+            {title}
           </h2>
-          <p className="font-rajdhani text-[28px] font-semibold leading-[1em] text-white md:text-[32px]">
-            Here is a little more about how we operate.
-            <br />
-            Got a more specific question? Feel free to get in touch.
+          <p
+            className="font-rajdhani text-[28px] font-semibold leading-[1em] md:text-[32px]"
+            style={{ color: headerTextColor }}
+          >
+            {subtitle || defaultSubtitle}
           </p>
         </div>
       </div>

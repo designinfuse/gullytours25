@@ -75,7 +75,7 @@ export default function CorporateWalksPage() {
       {/* <CorporateSection /> */}
 
       {/* Case Studies Section */}
-      <CaseStudiesSection />
+      <CaseStudiesSection category="educational" />
 
       {/* Testimonial Section */}
       <TestimonialSection />

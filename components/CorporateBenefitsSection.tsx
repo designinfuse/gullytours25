@@ -1,29 +1,42 @@
 "use client";
 
 import Image from "next/image";
+import PerforatedCard from "./PerforatedCard";
 
 interface Benefit {
+  label: string;
   title: string;
+  description: string;
   bgColor: string;
-  image: string;
+  rotation: string;
+  icon: string;
 }
 
 export default function CorporateBenefitsSection() {
   const benefits: Benefit[] = [
     {
-      title: "Host your guests in a way \nthey'll never forget.",
-      bgColor: "#DE6D11",
-      image: "/corporate/benefit-1.jpg",
-    },
-    {
-      title: "Ditch the cubicles, \nhit the gullies",
-      bgColor: "#247DA6",
-      image: "/corporate/benefit-2.jpg",
-    },
-    {
-      title: "Forget the intros—stories \nbond teams faster..",
+      label: "Team Bonding",
+      title: "TEAM BONDING",
+      description: "Forget the intros—stories bond teams faster..",
       bgColor: "#B23F27",
-      image: "/corporate/benefit-3.jpg",
+      rotation: "rotate-[6deg]",
+      icon: "/corporate/team-bonding-icon.svg",
+    },
+    {
+      label: "Onboarding Journeys",
+      title: "ONBOARDING JOURNEYS",
+      description: "Ditch the cubicles, hit the gullies",
+      bgColor: "#247DA6",
+      rotation: "rotate-[1deg]",
+      icon: "/corporate/onboarding-icon.svg",
+    },
+    {
+      label: "Hosting Delegates",
+      title: "HOSTING DELEGATES",
+      description: "Host your guests in a way they'll never forget.",
+      bgColor: "#DE6D11",
+      rotation: "rotate-[5deg]",
+      icon: "/corporate/hosting-icon.svg",
     },
   ];
 
@@ -50,48 +63,47 @@ export default function CorporateBenefitsSection() {
         </div>
 
         {/* Right Side - Benefits Cards */}
-        <div className="flex w-full flex-col gap-6 lg:w-auto">
+        <div className="flex w-full flex-col gap-4 lg:w-auto">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="relative flex h-auto min-h-[220px] w-full items-center overflow-hidden rounded-3xl lg:w-[565px]"
-              style={{ backgroundColor: benefit.bgColor }}
+              className={`${benefit.rotation} transition-transform hover:rotate-0 hover:scale-105 duration-300`}
             >
-              {/* Background Decorative Shape */}
-              <div className="absolute inset-0 overflow-hidden">
-                <svg
-                  className="absolute left-0 top-0 h-full w-full"
-                  viewBox="0 0 565 240"
-                  fill="none"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M0 0 H565 V240 H100 Q50 200 50 120 Q50 40 100 0 Z"
-                    fill="currentColor"
-                    fillOpacity="0.1"
-                  />
-                </svg>
-              </div>
+              <PerforatedCard
+                edges={{ left: true, right: true }}
+                bgColor={benefit.bgColor}
+                className="relative h-[164px] w-full lg:w-[482px]"
+              >
+                {/* Double Border Frame */}
+                <div className="absolute left-1/2 top-1/2 h-[138px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-[3px] border border-[#F7F8DF]" />
+                <div className="absolute left-1/2 top-1/2 h-[130px] w-[430px] -translate-x-1/2 -translate-y-1/2 rounded-sm border border-[#F7F8DF]" />
 
-              {/* Content Container */}
-              <div className="relative flex w-full items-center gap-6 p-6">
-                {/* Image */}
-                <div className="relative h-[182px] w-[182px] flex-shrink-0 overflow-hidden rounded-2xl bg-white/10">
-                  <Image
-                    src={benefit.image}
-                    alt={benefit.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                {/* Content */}
+                <div className="relative flex h-full w-full items-center px-10 py-6">
+                  {/* Icon/Illustration on left */}
+                  <div className="relative mr-6 h-[100px] w-[100px] flex-shrink-0 mix-blend-multiply">
+                    <div className="rotate-[11deg]">
+                      <Image
+                        src={benefit.icon}
+                        alt={benefit.label}
+                        width={100}
+                        height={100}
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
 
-                {/* Text */}
-                <div className="flex-1">
-                  <p className="whitespace-pre-line font-inter text-xl leading-[1.21em] text-white lg:text-[25px]">
-                    {benefit.title}
-                  </p>
+                  {/* Text Content */}
+                  <div className="flex flex-1 flex-col gap-3">
+                    <h3 className="font-rajdhani text-xl font-bold uppercase leading-normal text-[#F7F8DF] md:text-[22px]">
+                      {benefit.title}
+                    </h3>
+                    <p className="font-rajdhani text-base font-semibold leading-[1.3em] text-[#F7F8DF] md:text-[18px]">
+                      {benefit.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </PerforatedCard>
             </div>
           ))}
         </div>
