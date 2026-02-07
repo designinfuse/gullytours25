@@ -57,12 +57,12 @@ export default function CaseStudiesSection({
         </h2>
 
         {/* Case Study Cards Grid */}
-        <div className="flex w-full flex-wrap items-stretch justify-center gap-6">
+        <div className="grid w-full grid-cols-1 justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3">
           {displayedCaseStudies.map((caseStudy) => (
             <Link
               key={caseStudy.id}
               href={`/case-studies/${caseStudy.slug}`}
-              className="flex"
+              className="flex w-full justify-center"
             >
               <CaseStudyItem caseStudy={caseStudy} bgColor={bgColor} />
             </Link>

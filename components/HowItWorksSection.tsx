@@ -71,16 +71,14 @@ export default function HowItWorksSection() {
         ref={containerRef}
         className="relative h-auto lg:h-[250vh]"
       >
-        <div className="flex flex-col px-6 py-12 md:px-12 md:py-16 lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden lg:px-24">
-
-          <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col">
-
+        <div className="flex flex-col px-6 py-12 md:px-12 md:py-16 lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden lg:px-24 lg:py-8 xl:py-12">
+          <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col justify-center">
             {/* Title */}
-            <div className="mb-8 flex shrink-0 flex-col items-center gap-2 text-center lg:mb-12">
-              <h2 className="font-rajdhani text-[48px] font-semibold uppercase leading-none text-white md:text-[64px] lg:text-[84px]">
+            <div className="mb-8 flex shrink-0 flex-col items-center gap-2 text-center lg:mb-8 xl:mb-12">
+              <h2 className="font-rajdhani text-[48px] font-semibold uppercase leading-none text-white md:text-[64px] lg:text-[56px] xl:text-[72px] 2xl:text-[84px]">
                 How it Works
               </h2>
-              <div className="relative h-[15px] w-[180px] md:h-[19px] md:w-[241px]">
+              <div className="relative h-[12px] w-[140px] md:h-[19px] md:w-[241px] lg:h-[15px] lg:w-[180px] xl:h-[19px] xl:w-[241px]">
                 <Image
                   src="/how-it-works-underline.svg"
                   alt=""
@@ -90,11 +88,10 @@ export default function HowItWorksSection() {
               </div>
             </div>
 
-            <div className="flex flex-1 flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-24 lg:overflow-visible">
-
+            <div className="flex flex-1 flex-col items-center gap-8 lg:flex-row lg:items-center lg:gap-16 lg:overflow-visible xl:gap-24">
               {/* Left: Image */}
               <div className="relative flex shrink-0 flex-col items-center lg:block">
-                <div className="relative aspect-square w-[300px] md:w-[400px] lg:w-[556px] shrink-0 border-8 border-[#F5EF86]">
+                <div className="relative aspect-square w-[300px] md:w-[400px] lg:w-[380px] xl:w-[480px] 2xl:w-[556px] max-h-[50vh] xl:max-h-[60vh] shrink-0 border-8 border-[#F5EF86]">
                   <Image
                     src="/how-it-works-image.jpg"
                     alt="Tour group having fun"
@@ -139,7 +136,7 @@ export default function HowItWorksSection() {
                             {/* Content Column */}
                             <motion.div
                               layout
-                              className={`flex flex-col ${isLast ? '' : 'pb-12'}`}
+                              className={`flex flex-col ${isLast ? '' : 'pb-6 xl:pb-12'}`}
                             >
                               <div className="flex items-center h-[40px]"> {/* Height matches number for alignment */}
                                 <h3 className={`font-rajdhani text-3xl font-bold uppercase transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/40'}`}>
@@ -208,7 +205,7 @@ export default function HowItWorksSection() {
                   </div>
 
                   {/* CTA Button */}
-                  <div className="mt-12 md:pl-[64px]">
+                  <div className="mt-4 lg:mt-6 xl:mt-12 md:pl-[64px]">
                     <Link
                       href="/contact"
                       className="group inline-flex items-center justify-center border border-[#F5EF86] p-1 transition-transform hover:scale-105 rounded-xl"

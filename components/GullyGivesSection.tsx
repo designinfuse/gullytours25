@@ -2,17 +2,29 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function GullyGivesSection() {
+  const pathname = usePathname();
+  const isGullyGivesPage = pathname === "/gully-gives";
+
   const slideUpVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <section className="relative flex h-[950px] w-full items-center justify-center overflow-hidden bg-[#DE6D11] px-4 py-20">
+    <section className="relative flex min-h-[950px] w-full items-center justify-center overflow-hidden bg-[#DE6D11] px-4 py-20">
       {/* Decorative Rectangle */}
-      <div className="absolute left-[112px] top-[88px] h-[200px] w-[200px] bg-[#D9D9D9] opacity-30" />
+      <div className="absolute left-[112px] top-[88px] h-[200px] w-[200px] bg-[#D9D9D9]">
+        <Image
+          src="/gully-gives-3.jpeg"
+          alt="Gully Gives community walk"
+          fill
+          className="object-cover"
+        />
+      </div>
 
       {/* Decorative Images */}
       <div className="absolute bottom-[117px] left-[70px] h-[200px] w-[200px] overflow-hidden">
@@ -74,18 +86,22 @@ export default function GullyGivesSection() {
           </p>
 
           {/* CTA Button */}
-          <motion.div
-            className="flex justify-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            variants={slideUpVariants}
-          >
-            <button className="rounded-lg border-2 border-[#F5EF86] px-3 py-4 font-rajdhani text-3xl font-semibold uppercase text-[#F5EF86] outline-2 outline-[#F5EF86] outline-offset-3 transition-all hover:cursor-pointer hover:bg-[#F5EF86] hover:text-[#DE6D11] lg:text-[32px]">
-              Learn more
-            </button>
-          </motion.div>
+          {!isGullyGivesPage && (
+            <motion.div
+              className="flex justify-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              variants={slideUpVariants}
+            >
+              <Link href="/gully-gives">
+                <button className="rounded-lg border-2 border-[#F5EF86] px-3 py-4 font-rajdhani text-3xl font-semibold uppercase text-[#F5EF86] outline-2 outline-[#F5EF86] outline-offset-3 transition-all hover:cursor-pointer hover:bg-[#F5EF86] hover:text-[#DE6D11] lg:text-[32px]">
+                  Learn more
+                </button>
+              </Link>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

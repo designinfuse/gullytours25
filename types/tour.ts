@@ -22,6 +22,7 @@ export interface Tour {
   bgColor: string;
   category: TourCategory;
   when?: string; // ISO date string for upcoming tours
+  buttonLabel?: string;
 }
 
 export interface CalendarEvent {

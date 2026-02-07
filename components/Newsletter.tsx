@@ -17,7 +17,7 @@ export default function Newsletter() {
         {/* Left Side - Title and Subtitle */}
         <div className="flex flex-col gap-2">
           <h2 className="font-dm-sans text-4xl leading-[1.3em] tracking-[-0.04em] text-[#FDF6D8] md:text-5xl lg:text-[56px]">
-            Join namma updates
+            Join our newsletter for updates
           </h2>
           <p className="font-dm-sans text-lg leading-[1.3em] tracking-[-0.04em] text-[#FDF6D8] md:text-xl lg:text-[23px]">
             No spam, only filter-coffee-fueled updates.

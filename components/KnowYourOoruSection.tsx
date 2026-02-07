@@ -9,15 +9,47 @@ export default function KnowYourOoruSection() {
     visible: { opacity: 1, y: 0 },
   };
 
-  const carouselFrames = [
-    "/carousel-auto-raja.png",
-    "/carousel-corner-house.png",
-    "/carousel-girish.png",
-    "/carousel-sapna.png",
-    "/carousel-ngma.png",
-    "/carousel-mark-cubbon.png",
-    "/carousel-elec-city.png",
-    "/carousel-trignometry.png",
+  const triviaItems = [
+    {
+      image: "/carousel-auto-raja.png",
+      link: "https://www.instagram.com/reel/DBga-YLyKcp/?igsh=NTh4dXgwem41c3h3",
+      title: "Auto Raja",
+    },
+    {
+      image: "/carousel-corner-house.png",
+      link: "https://www.instagram.com/reel/DCEYu0QyiPa/?igsh=MTkzZHZlM2drZjliaw==",
+      title: "Corner House",
+    },
+    {
+      image: "/carousel-girish.png",
+      link: "https://www.instagram.com/reel/DA8RpfVyAK9/?igsh=NGwxMjJvZHQ1cjhh",
+      title: "Girish Karnad",
+    },
+    {
+      image: "/carousel-sapna.png",
+      link: "https://www.instagram.com/reel/DBOUf4Zy0m6/?igsh=bnlvY3dwenh1aTRl",
+      title: "Sapna",
+    },
+    {
+      image: "/carousel-ngma.png",
+      link: "https://www.instagram.com/reel/C-ZmcxHSiUw/?igsh=MWI3czdrcjE3eWhoMA==",
+      title: "NGMA",
+    },
+    {
+      image: "/carousel-mark-cubbon.png",
+      link: "https://www.instagram.com/reel/C9RiiEOyAMb/?igsh=MWdiZGdsdWxreTdjOQ==",
+      title: "Mark Cubbon",
+    },
+    {
+      image: "/carousel-elec-city.png",
+      link: "https://www.instagram.com/reel/C8cA20WyAd4/?igsh=MWs0YzJsbDFpYno5Mw==",
+      title: "Electronic City",
+    },
+    {
+      image: "/carousel-trignometry.png",
+      link: "https://www.instagram.com/reel/C8t82RgSOhl/?igsh=cnY1OWc2cm8waWJt",
+      title: "Trigonometry",
+    },
   ];
 
   return (
@@ -42,34 +74,72 @@ export default function KnowYourOoruSection() {
 
         {/* Carousel */}
         <div className="relative w-full overflow-hidden">
-          <div className="carousel-track flex gap-6">
+          <div className="carousel-track flex w-max gap-6 pr-6">
             {/* First set of frames */}
-            {carouselFrames.map((frame, index) => (
-              <div
+            {triviaItems.map((item, index) => (
+              <a
                 key={`frame-1-${index}`}
-                className="relative h-[443px] w-[249px] flex-shrink-0"
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative h-[443px] w-[249px] flex-shrink-0"
               >
+                <div className="absolute inset-0 z-10 hidden items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:flex group-hover:opacity-100">
+                  <div className="rounded-full bg-white/20 p-4 backdrop-blur-sm">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polygon points="5 3 19 12 5 21 5 3" fill="white" />
+                    </svg>
+                  </div>
+                </div>
                 <Image
-                  src={frame}
-                  alt={`Bengaluru trivia frame ${index + 1}`}
+                  src={item.image}
+                  alt={item.title}
                   fill
-                  className="rounded-lg object-cover"
+                  className="rounded-lg object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                 />
-              </div>
+              </a>
             ))}
             {/* Duplicate set for seamless loop */}
-            {carouselFrames.map((frame, index) => (
-              <div
+            {triviaItems.map((item, index) => (
+              <a
                 key={`frame-2-${index}`}
-                className="relative h-[443px] w-[249px] flex-shrink-0"
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative h-[443px] w-[249px] flex-shrink-0"
               >
+                <div className="absolute inset-0 z-10 hidden items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:flex group-hover:opacity-100">
+                  <div className="rounded-full bg-white/20 p-4 backdrop-blur-sm">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polygon points="5 3 19 12 5 21 5 3" fill="white" />
+                    </svg>
+                  </div>
+                </div>
                 <Image
-                  src={frame}
-                  alt={`Bengaluru trivia frame ${index + 1}`}
+                  src={item.image}
+                  alt={item.title}
                   fill
-                  className="rounded-lg object-cover"
+                  className="rounded-lg object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                 />
-              </div>
+              </a>
             ))}
           </div>
         </div>

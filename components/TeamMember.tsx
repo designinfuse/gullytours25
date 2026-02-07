@@ -8,6 +8,7 @@ interface TeamMemberProps {
   image: string;
   role: string;
   description: string[];
+  objectPosition?: string;
 }
 
 export default function TeamMember({
@@ -15,6 +16,7 @@ export default function TeamMember({
   image,
   role,
   description,
+  objectPosition = "center",
 }: TeamMemberProps) {
   const slideUpVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -39,7 +41,7 @@ export default function TeamMember({
       <div className="relative mb-6 flex h-[273px] w-[286px] items-center justify-center px-4">
         {/* Masked Image Area */}
         <div
-          className="relative h-full w-full aspect-square overflow-hidden"
+          className="relative h-full aspect-square overflow-hidden"
           style={{
             maskImage: "url(/team-stamp-mask.svg)",
             maskSize: "100% 100%",
@@ -52,12 +54,11 @@ export default function TeamMember({
           }}
         >
           {image ? (
-            <Image
+            <img
               src={image}
               alt={name}
-              fill
-              className="object-cover object-[0%_25%]"
-              sizes="(max-width: 768px) 100vw, 286px"
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ objectPosition }}
             />
           ) : (
             <div className="h-full w-full bg-[#D9D9D9]/20" />

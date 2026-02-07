@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import CTAButton from "@/components/ui/CTAButton";
+import PerforatedCard from "./PerforatedCard";
 
 export default function CollaborationsSection() {
   const slideUpVariants = {
@@ -35,7 +36,7 @@ export default function CollaborationsSection() {
   ];
 
   return (
-    <section className="flex w-full flex-col items-center justify-center px-4 py-20 bg-[#EDEDE7]">
+    <section className="flex w-full flex-col items-center justify-center bg-[#EDEDE7] px-4 py-20">
       <div className="flex w-full max-w-[1440px] flex-col items-center gap-16">
         {/* Header */}
         <div className="flex w-full max-w-[720px] flex-col items-center gap-4">
@@ -52,7 +53,7 @@ export default function CollaborationsSection() {
           {collaborations.map((collab, index) => (
             <motion.div
               key={index}
-              className="flex w-full flex-col overflow-hidden"
+              className="flex h-full w-full flex-col overflow-hidden"
               style={{ backgroundColor: collab.bgColor }}
               initial="hidden"
               whileInView="visible"
@@ -61,21 +62,13 @@ export default function CollaborationsSection() {
               variants={slideUpVariants}
             >
               {/* Card Image with Stamp Wavy Effect */}
-              <div className="relative aspect-square flex flex-1 items-center justify-center px-5 pt-12">
-                {/* Masked Background Image */}
-                <div
-                  className="relative h-full w-full"
-                  style={{
-                    maskImage: "url(/pattern-left.svg), url(/pattern-right.svg)",
-                    maskSize: "60%, 60%",
-                    maskPosition: "left center, right center",
-                    maskRepeat: "no-repeat, no-repeat",
-                    WebkitMaskImage:
-                      "url(/pattern-left.svg), url(/pattern-right.svg)",
-                    WebkitMaskSize: "60%, 60%",
-                    WebkitMaskPosition: "left center, right center",
-                    WebkitMaskRepeat: "no-repeat, no-repeat",
-                  }}
+              <div className="flex w-full justify-center px-6 pt-12">
+                <PerforatedCard
+                  edges={{ left: true, right: true }}
+                  bgColor="transparent"
+                  className="relative aspect-square w-full"
+                  perforationSize={10}
+                  perforationSpacing={30}
                 >
                   <Image
                     src={collab.image}
@@ -83,11 +76,11 @@ export default function CollaborationsSection() {
                     fill
                     className="object-cover"
                   />
-                </div>
+                </PerforatedCard>
               </div>
 
               {/* Card Content */}
-              <div className="flex flex-col items-center gap-5 px-6 py-12 text-center">
+              <div className="flex flex-1 flex-col items-center gap-5 px-6 py-12 text-center">
                 <h3 className="whitespace-pre-line font-rajdhani text-4xl font-bold uppercase leading-none text-white">
                   {collab.title}
                 </h3>

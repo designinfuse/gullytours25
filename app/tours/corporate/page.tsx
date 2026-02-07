@@ -70,12 +70,12 @@ export default function CorporateWalksPage() {
       {/* How It Works Section */}
       <HowItWorksSection />
 
+      {/* Case Studies Section */}
+      <CaseStudiesSection category="corporate" />
+
       {/* Conferences Section */}
       <ConferencesSection />
       {/* <CorporateSection /> */}
-
-      {/* Case Studies Section */}
-      <CaseStudiesSection category="corporate" />
 
       {/* Testimonial Section */}
       <TestimonialSection />

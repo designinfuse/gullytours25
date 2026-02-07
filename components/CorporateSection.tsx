@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import PerforatedCard from "./PerforatedCard";
+import CTAButton from "./ui/CTAButton";
 
 export default function CorporateSection() {
   const fadeInUp = {
@@ -31,7 +32,7 @@ export default function CorporateSection() {
     {
       icon: "/corporate-icon-3-4d920f.png",
       iconBg: "#B23F27",
-      title: "Hyatt Centric – High on Death by Dosa",
+      title: "Hyatt – High on Death by Dosa",
       description:
         "We built a journey along Bangalore's iconic dosa trail, filled with conversation, culture, and culinary delights for Hyatt Centric.",
       slug: "hyatt-centric-death-by-dosa",
@@ -99,12 +100,6 @@ export default function CorporateSection() {
                     Leaders Together Through The City - It&apos;s History, Culture,
                     Food And Hidden Corners
                   </p>
-                  <Link
-                    href="/tours/corporate"
-                    className="font-rajdhani text-lg font-semibold uppercase text-[#F5EF86] underline decoration-solid underline-offset-2 transition-colors hover:text-white sm:text-xl"
-                  >
-                    EXPLORE CORPORATE EXPERIENCES
-                  </Link>
                 </div>
               </div>
             </PerforatedCard>
@@ -121,13 +116,10 @@ export default function CorporateSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 variants={fadeInUp}
               >
-                <Link
-                  href={`/case-studies/${study.slug}`}
-                  className="flex gap-4 md:gap-7 group"
-                >
+                <div className="flex gap-4 md:gap-7 group">
                   {/* Icon */}
                   <div
-                    className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-lg sm:h-32 sm:w-32 md:h-[154px] md:w-[153px] transition-transform group-hover:scale-105"
+                    className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-lg sm:h-32 sm:w-32 md:h-[154px] md:w-[153px] transition-transform"
                     style={{ backgroundColor: study.iconBg }}
                   >
                     <div className="relative h-20 w-20 sm:h-28 sm:w-28 md:h-[130px] md:w-[130px]">
@@ -142,17 +134,61 @@ export default function CorporateSection() {
 
                   {/* Content */}
                   <div className="flex flex-col justify-center gap-1 py-1">
-                    <h3 className="font-rajdhani text-xl font-semibold uppercase leading-tight text-[#262626] sm:text-2xl md:text-[24px] group-hover:text-[#B23F27] transition-colors">
+                    <h3 className="font-rajdhani text-xl font-semibold uppercase leading-tight text-[#262626] sm:text-2xl md:text-[24px]">
                       {study.title}
                     </h3>
                     <p className="font-rajdhani text-sm font-medium capitalize leading-relaxed text-[#262626] sm:text-base md:text-[16px] md:leading-[20px]">
                       {study.description}
                     </p>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
+        </div>
+
+        {/* Corporate Logos */}
+        <div className="mt-20 flex flex-col items-center">
+          <h3 className="mb-10 font-rajdhani text-2xl font-bold uppercase text-[#262626] md:text-3xl">
+            WHO&apos;S BEEN WALKING WITH US
+          </h3>
+          <div className="flex w-full flex-wrap items-center justify-center gap-8 md:gap-16">
+            {[
+              { name: "Client 1", logo: "/clients/logo-1.png", width: 140 },
+              { name: "Client 2", logo: "/clients/logo-2.png", width: 140 },
+              { name: "Client 3", logo: "/clients/logo-3.png", width: 140 },
+              { name: "Client 4", logo: "/clients/logo-4.png", width: 80 },
+              { name: "Client 5", logo: "/clients/logo-5.png", width: 140 },
+              { name: "Client 6", logo: "/clients/logo-6.png", width: 160 },
+              { name: "Client 7", logo: "/clients/logo-7.png", width: 140 },
+            ].map((client, i) => (
+              <div
+                key={i}
+                className="relative h-20 grayscale opacity-70 transition-all hover:grayscale-0 hover:opacity-100"
+                style={{ width: `${client.width}px` }}
+              >
+                <Image
+                  src={client.logo}
+                  alt={client.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Button */}
+        <div className="mt-20 flex justify-center">
+          <CTAButton
+            href="/tours/corporate"
+            borderColor="#247DA6"
+            textColor="#247DA6"
+            hoverBgColor="#247DA6"
+            hoverTextColor="#FFFFFF"
+          >
+            EXPLORE CORPORATE TOURS
+          </CTAButton>
         </div>
       </div>
     </section>

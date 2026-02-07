@@ -32,10 +32,10 @@ export const caseStudies: CaseStudy[] = [
     category: "corporate",
     theirAsk: "Team-building experience that is beyond the usual offsite.",
     experienceTailored: "Colonial Crawl - Team Building Edition",
-    image: "/tours/corporate-experiences/google-colonial-crawl/1.jpg",
+    image: "/tours/corporate-experiences/google-colonial-crawl/1.jpeg",
     images: [
-      "/tours/corporate-experiences/google-colonial-crawl/1.jpg",
-      "/tours/corporate-experiences/google-colonial-crawl/2.jpg",
+      "/tours/corporate-experiences/google-colonial-crawl/1.jpeg",
+      "/tours/corporate-experiences/google-colonial-crawl/2.jpeg",
     ],
     theExperience:
       "Google wanted a team-building experience that went beyond the usual offsite. They were looking for something immersive, informal, and deeply connected to the city. Gully Tours suggested our signature Colonial Crawl - a heritage walk that brings alive Bengaluru's colonial past through stories, architecture, and hidden anecdotes.\n\nSeema, our guide for the day, is a traveler, nature lover, and an ardent fan of mystery stories. Her warmth, curiosity, and knack for connecting the past with the present made her the perfect fit for Google's group. She led the team through the city's colonial landmarks - from the red-bricked High Court to the tree-lined paths of Cubbon Park - peppering her narration with tales of old Bangalore, British intrigue, and lesser-known nuggets that had everyone hooked.\n\nPost-walk, the group gathered on the lawns of Cubbon Park for a creative reflection session. Armed with paint, brushes, and blank canvases, each participant created a small piece inspired by the walk and their own connection to the city. The activity naturally evolved into a storytelling circle - people shared childhood memories, the cities they grew up in, and their personal love stories with Bengaluru.",
@@ -51,8 +51,8 @@ export const caseStudies: CaseStudy[] = [
     theirAsk:
       "To curate a unique, hassle-free cultural walk as an engaging offsite experience for their team.",
     experienceTailored: "Pete By Night - Cultural Walk Edition",
-    image: "/tours/corporate-experiences/cred-pete-by-night/1.jpg",
-    images: ["/tours/corporate-experiences/cred-pete-by-night/1.jpg"],
+    image: "/tours/corporate-experiences/cred-pete-by-night/1.jpeg",
+    images: ["/tours/corporate-experiences/cred-pete-by-night/1.jpeg"],
     teamDescription:
       "Eight members from different corners of India brought together a vibrant mix of cultures and professions. From software testing engineers and a QA specialist to a product analyst, software engineers, and a product manager it was a perfectly balanced, cross-functional crew.",
     theExperience:
@@ -65,19 +65,19 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "hyatt-centric-death-by-dosa",
     slug: "hyatt-centric-death-by-dosa",
-    title: "Hyatt Centric – Death by Dosa",
-    client: "Hyatt Centric",
+    title: "Hyatt – Death by Dosa",
+    client: "Hyatt",
     category: "corporate",
     theirAsk:
       "To curate the Death by Dosa experience as a personality development program for their in-house staff.",
     experienceTailored: "Death by Dosa - Personality Building Walk Edition",
-    image: "/tours/corporate-experiences/hyatt-centric-death-by-dosa/1.jpg",
+    image: "/tours/corporate-experiences/hyatt-centric-death-by-dosa/1.jpeg",
     images: [
-      "/tours/corporate-experiences/hyatt-centric-death-by-dosa/1.jpg",
-      "/tours/corporate-experiences/hyatt-centric-death-by-dosa/2.jpg",
+      "/tours/corporate-experiences/hyatt-centric-death-by-dosa/1.jpeg",
+      "/tours/corporate-experiences/hyatt-centric-death-by-dosa/2.jpeg",
     ],
     teamDescription:
-      "A lively group of professionals from Hyatt Centric Bangalore came together for a morning unlike any other. With members from different departments from front office to culinary, sales to operations the team brought a mix of skills, perspectives, and personalities, united by a love for new experiences and good food.",
+      "A lively group of professionals from Hyatt Bangalore came together for a morning unlike any other. With members from different departments from front office to culinary, sales to operations the team brought a mix of skills, perspectives, and personalities, united by a love for new experiences and good food.",
     theExperience:
       "They set out on our much-loved Death by Dosa walk - a morning trail through Bangalore's iconic dosa haunts. The city was just waking up as the group stepped into bustling breakfast joints, each with its own loyal following. From soft, fluffy set dosas served with fragrant chutneys to crisp golden masala dosas sizzling on hot tawas, every stop revealed a delicious slice of the city's food culture. Alongside the flavours came stories of century-old kitchens, family legacies, and how a simple breakfast became a Bangalore institution.",
     theConnection:
@@ -95,10 +95,10 @@ export const caseStudies: CaseStudy[] = [
       "A meaningful, engaging experience that goes beyond a regular corporate outing, allowing the team to connect, learn, and share across cultures.",
     experienceTailored:
       "Tipu's Trail - Cultural exchange & Team Bonding Walk Edition",
-    image: "/tours/corporate-experiences/plansee-tipus-trail/1.jpg",
+    image: "/tours/corporate-experiences/plansee-tipus-trail/1.jpeg",
     images: [
-      "/tours/corporate-experiences/plansee-tipus-trail/1.jpg",
-      "/tours/corporate-experiences/plansee-tipus-trail/2.jpg",
+      "/tours/corporate-experiences/plansee-tipus-trail/1.jpeg",
+      "/tours/corporate-experiences/plansee-tipus-trail/2.jpeg",
     ],
     teamDescription:
       "A group of 20 international clients from Plansee set out on a journey through time, ready to experience more than just a corporate outing. With members hailing from different countries and backgrounds, the group brought a vibrant mix of perspectives, making the day as much about cultural exchange as it was about exploration.",
@@ -166,7 +166,7 @@ export const caseStudies: CaseStudy[] = [
     image: "/tours/corporate-experiences/nimhans-night-trail/1.jpg",
     images: [
       "/tours/corporate-experiences/nimhans-night-trail/1.jpg",
-      "/tours/corporate-experiences/nimhans-night-trail/2.jpg",
+      "/tours/corporate-experiences/nimhans-night-trail/2.png",
     ],
     theExperience:
       "For delegates attending the Women's Mental Health Conference, we designed the Bangalore Night Trail – Heritage Walk Edition, offering them an engaging way to unwind while exploring the city's layered history. Set against the backdrop of twilight, the walk led participants through iconic streets, colonial-era buildings, and vibrant local pockets that reveal Bangalore's unique cultural and architectural heritage. With stories that intertwined the city's past and present, the trail provided a reflective yet lively experience—balancing history with the atmosphere of the city by night. It served not only as a heritage exploration but also as a mindful, communal activity, allowing delegates to connect with each other and with Bangalore in a memorable way.",
@@ -278,6 +278,7 @@ export const caseStudies: CaseStudy[] = [
     theirAsk: "Designing and Training and Leading a new guided walk of the monument.",
     experienceTailored:
       "Design, train, and lead set of new guided walking experience at Vidhana Soudha.",
+    image: "/collab-vidhana-soudha.jpg",
     theExperience:
       "We curated a 90-minute guided walking tour of Vidhana Soudha, led by expertly trained storytellers. The walk offered participants an immersive journey through the monument's architectural grandeur and historical significance, highlighting both its legislative importance and cultural legacy. Through carefully crafted narratives, visitors could connect with the stories behind its construction, the vision of its architects, and the role it plays in Karnataka's governance today. Each guide was trained to blend historical accuracy with engaging storytelling, ensuring a rich and memorable experience for all participants.",
     theOutcome:
@@ -505,6 +506,7 @@ export const caseStudies: CaseStudy[] = [
       "Enable India wanted a hands-on, immersive learning experience for visually impaired participants. The goal was to combine cultural exploration, local history, and skill-building to foster confidence, independent mobility, and social engagement.",
     experienceTailored:
       "We designed Death By Dosa: A History and Food Walk through Chikpete, one of Bangalore's oldest neighborhoods. The walk combined historical storytelling, food experiences, skill-building, and inclusive engagement.",
+    image: "/gully-cares-1.jpg",
     theExperience:
       "On 6th September 2025, 18 participants and 2 trainers with vision impairment joined 20 volunteers for a 4-hour journey through Chikpete. Volunteers guided the participants through busy streets, provided audio descriptions of surroundings, shared fun historical facts, and encouraged exploration. Participants navigated street corners, interacted with local vendors, and experienced the neighborhood's culture and culinary richness firsthand. It was an active, immersive experience where everyone was not just observing, but fully engaging with the environment.",
     theOutcome:

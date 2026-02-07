@@ -40,9 +40,10 @@ function transformCaseStudyToTour(caseStudy: CaseStudy): Tour {
     title: caseStudy.title,
     subtitle,
     price: "Custom Pricing",
-    image: caseStudy.image || "/tours/default-case-study.jpg",
+    image: caseStudy.image || "/card-weekend-walks.png",
     bgColor: tourCategoryColors[tourCategory],
     category: tourCategory,
+    buttonLabel: "VIEW CASE STUDY",
   };
 }
 
@@ -62,14 +63,22 @@ function getCaseStudyTours(): Tour[] {
 
 // Tours to hide from the listing
 const hiddenTourIds = new Set([
+  "blr-fest-archietectural-trail",
+  "blr-fest-malleshwaram-hogona-art-culture-walk",
+  "bookmarking-blr-literary-walk",
+  "cheers-before-the-whistle",
+  "love-actually",
+  "startup-trail",
   "bangalore-biodiversity-trail",
   "cantt-by-night-maverick-farmer",
   "cantt-by-night-womens-only",
   "Culinary Tour",
-  "death-by-dosa-womens-only",
   "the-nandi-valley-walk",
+  "death-by-dosa-womens-only",
   "the-soba-walk",
   "the-yelahanka-diaries",
+  "Palace Walk",
+  "Best of Mysore",
 ]);
 
 // Transform API tour to our Tour format
@@ -83,13 +92,19 @@ function transformApiTour(apiTour: ApiTour): Tour {
     return "Bangalore"; // Default to Bangalore for all other locations
   };
 
+  // Handle broken image paths from API
+  let imageUrl = apiTour.image;
+  if (imageUrl && imageUrl.startsWith("/assets/")) {
+    imageUrl = undefined;
+  }
+
   return {
     id: apiTour._id,
     location: normalizeLocation(apiTour.place),
     title: apiTour.tour_name,
     subtitle: `Weekend Walk: ${apiTour.activity || "Exploration"} | ${apiTour.duration}`,
     price: `From Rs${apiTour.price}`,
-    image: apiTour.image || `/tours/${apiTour._id}/thumb.jpg`,
+    image: imageUrl || `/tours/${apiTour._id}/thumb.jpg`,
     bgColor: tourCategoryColors["Weekend Tours"],
     category: "Weekend Tours",
   };
@@ -155,18 +170,22 @@ export default function ToursPage() {
             // Match calendar events with tour data
             const matchedUpcoming: Tour[] = [];
             futureEvents.forEach((event) => {
-              const matchedTour = toursData.docs.find(
-                (t) =>
-                  t.tour_name.trim().toLowerCase() ===
-                  event.summary.trim().toLowerCase()
-              );
+              const matchedTour = toursData.docs.find((t) => {
+                const name = t.tour_name.trim().toLowerCase();
+                const summary = event.summary.trim().toLowerCase();
+                return (
+                  name === summary ||
+                  name === `the ${summary}` ||
+                  summary === `the ${name}`
+                );
+              });
 
               if (matchedTour && !hiddenTourIds.has(matchedTour._id)) {
                 matchedUpcoming.push({
                   id: matchedTour._id,
                   location:
                     matchedTour.place.toLowerCase().includes("mysore") ||
-                    matchedTour.place.toLowerCase().includes("mysuru")
+                      matchedTour.place.toLowerCase().includes("mysuru")
                       ? "Mysore"
                       : "Bangalore",
                   title: matchedTour.tour_name,
@@ -221,23 +240,13 @@ export default function ToursPage() {
       return upcomingTours;
     }
 
-    // Get unique IDs of tours that are in the upcoming list
-    const upcomingIds = upcomingTours.map((t) => t.id);
-
-    // For all other categories, exclude tours that have upcoming dates
-    const toursExcludingUpcoming = tours.filter(
-      (tour) => !upcomingIds.includes(tour.id)
-    );
-
-    // "All" shows all tours except upcoming tours
+    // "All" shows all tours (API + Case Studies)
     if (activeCategory === "All") {
-      return toursExcludingUpcoming;
+      return tours;
     }
 
-    // Other categories filter normally (also excluding upcoming)
-    return toursExcludingUpcoming.filter(
-      (tour) => tour.category === activeCategory
-    );
+    // Other categories filter normally
+    return tours.filter((tour) => tour.category === activeCategory);
   }, [tours, upcomingTours, activeCategory]);
 
   // Handle category change

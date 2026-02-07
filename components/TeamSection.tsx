@@ -10,6 +10,7 @@ interface TeamMemberData {
   role: string;
   description: string[];
   bio: string;
+  objectPosition?: string;
 }
 
 export default function TeamSection() {
@@ -23,17 +24,19 @@ export default function TeamSection() {
   const teamMembers: TeamMemberData[] = [
     {
       name: "Vinay Parameswarappa",
-      image: "/team/vinay.jpeg",
+      image: "/team/vinay.webp",
       role: "Founder",
       description: ["Leadership Coach", "Adventurer", "Trivia Buff"],
       bio: "Vinay is a passionate trivia buff who loves diving down fascinating rabbit holes. He enjoys urban exploration and connecting with people over conversations. At Gully Tours, he curates and leads walks that make people think and reflect. Over the years, he has led walks for Oscar-winning celebrities, Heads of State, CXOs, and loves leading walks for students. A certified scuba diver and an avid trekker, he loves brewing his daily coffee and enjoys a good single malt. An engineer from SJCE Mysore and an MBA from the University of Oxford, Vinay is currently pursuing a master's in Organisational Psychology.\n\nFavourite walk at Gully - Tipu's Trail in Srirangapatna.\nMost memorable travel experience - A midnight tour of the Colosseum in Rome under a full moon.\nOn the bucket list - To go on a hot air balloon safari in the Serengeti to see the Great Wildebeest Migration.",
+      objectPosition: "0% 0%",
     },
     {
       name: "Shruthi Preetham",
-      image: "/team/shruthi.jpeg",
+      image: "/team/shruthi.webp",
       role: "Operations & Business Head",
       description: ["Captain of Gully", "People-connector", "Problem Solver"],
       bio: "Shruthi brings heart, humour, and hustle to everything she does. Having worked across diverse sectors from research and medical sector to NGOs, fundraising, she thrives on connecting people, ideas, and impact. At Gully Tours, Shruthi wears many hats as the Head of Operations and Business. With an instinct for people and an eye for detail, she thrives on bringing order to the whirlwind balancing creativity with structure. Selling, managing teams, and crafting memorable experiences come naturally to her, it's where her extroverted energy meets her love for problem-solving. Fun-loving and endlessly curious, Shruthi loves to travel and meet new people yet equally treasures her moments of solitude. On a quiet Sunday, you'll find her building LEGO sets (sometimes solo, sometimes with her daughter) and music in the background.\n\nFavourite walk at Gully - Death by Dosa, where the stories are as flavourful as the food.\nMost memorable travel experience – Her heart belongs to Africa, where every corner is alive with stories and adventure. Italy also holds a special place for her — maybe it's the food, maybe it's the stories.\nOn the bucket list – To chase the Northern Lights in a caravan, somewhere between adventure and stills, making the journey as magical as the destination.",
+      objectPosition: "0% 25%",
     },
     {
       name: "Sneha Merlin",
@@ -55,6 +58,7 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["Mechanical Engineer", "Baker", "Explorer"],
       bio: "Aafreen is a mechanical engineer who enjoys solving problems by day and leading stories by dusk. At Gully Tours, she leads walking tours across Bangalore and Mysore, bringing local tales, hidden corners, and delicious bites to life. A self-taught baker and an incurable curious soul, Aafreen tends to tumble down delightful rabbit holes whenever something catches her interest! Be it food, history, or a random conversation with a stranger. She believes everyone has a story to tell, even if they're not a storyteller, and that belief shapes every tour she leads. When she's not guiding guests through city streets, she's usually experimenting in the kitchen, hunting down new cafés, or planning her next culinary adventure.\n\nFavourite walk at Gully – The Bangalore Pete by Night walk, where every turn smells of spice, silk, and stories.\nMost memorable travel experience – A family trip to the highest hotel in Wayanad, waking up to a sunrise above clouds was pure magic!\nOn the bucket list – To take a food trail across Europe, one croissant and cannoli at a time.",
+      objectPosition: "0% 25%",
     },
     // {
     //   name: "Ananya Vats",
@@ -69,6 +73,7 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["IT Professional", "Storyteller", "Empath"],
       bio: "Anju Marina Lobo is an IT project manager, freelance storyteller, and passionate explorer who loves uncovering stories hidden in plain sight. Driven by curiosity and connection, she finds joy in understanding how people, places, and experiences intertwine — whether she's managing a project or leading a walk through her city. At Gully Tours, Anju brings warmth and energy to every experience, transforming facts into feelings and streets into stories. For her, every walk is a chance to meet new people, exchange ideas, and see her city through fresh eyes.\n\nHer favourite Gully walk – The Devaraja Market Walk, for its vibrant colours, aromas, and ever-changing energy that makes each experience unique.\nMost memorable travel moment – Watching sunsets by the beach, where time seems to slow down and small pauses feel infinite.\nOn the bucket list – To see the Northern Lights, a dreamlike mix of magic, colour, and calm.",
+      objectPosition: "0% 100%",
     },
     {
       name: "Anjali Melina Lobo",
@@ -76,6 +81,7 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["Storyteller", "Music Lover", "Foodie"],
       bio: "Anjali Melina Lobo is a storyteller at heart, curious, observant, and always seeking to understand life in all its simple, beautiful chaos. She believes not every question needs a deep answer sometimes, all it takes is a plate of pani puri to make everything feel right again. At Gully Tours, Anjali finds joy in sharing stories about the city she calls home. Every walk is an opportunity to meet people from around the world, exchange experiences, and discover fresh perspectives. For her, storytelling isn't just about places — it's about the people who bring them to life. In her free time You'll find Anjali watching series, experimenting in the kitchen, listening to all kinds of music, or learning the guitar, one tune at a time.\n\nHer favourite Gully Walk? – The Culinary Walk in Mysore, where food becomes a bridge to culture and connection. From the bustling lanes of Devaraja Market to cooking and sharing a meal together, it's an experience that perfectly captures her belief that food is the most authentic way to understand a place.",
+      objectPosition: "0% 10%",
     },
     {
       name: "Arathi Varghese",
@@ -83,14 +89,15 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["Researcher", "Designer", "Observer"],
       bio: "Arathi is a researcher and a self-described jack of many trades, but her truest calling lies in delighting in life's side quests. From being the child who shared dreams at school bus stops to becoming a storyteller of Bengaluru's gullies, she believes we always find our way back to what our younger selves loved most. Curious and reflective by nature, Arathi delights in exploring new food, observing the quirks of people, and unraveling history — in that particular order. At Gully Tours, she hopes to spark curiosity and help others see familiar streets with fresh eyes. Arathi is a Human-Centered Design Researcher, educated at the Srishti School of Design, and spent many of her formative years in Bahrain, experiences that shaped her deep interest in people and place.\n\nHer favourite Gully walk - Malleswaram Hogna, captures everything she loves about the city its rhythms, stories, and serendipitous moments tucked into everyday life.\nMost memorable travel experience – Standing inside the Virupaksha Temple in Hampi, she recalls how the sudden sound of temple bells drew her gaze to sunbeams filtering between ancient stone pillars — and there, perfectly framed, stood the temple elephant lifting its trunk in prayer. Simple, yet profoundly beautiful.\nOn the bucket list – To share travel adventures around the world with her family.",
+      objectPosition: "0% 10%",
     },
-    {
-      name: "Aishwarya Kirit",
-      image: "/team/aishwarya.jpeg",
-      role: "Travel Storyteller",
-      description: ["Hoovu Gatherer", "Archivist", "Feline enthusiast"],
-      bio: "Aishwarya is a museum professional, and is happiest researching and writing about history and culture. Walking with Gully Tours is a way to retrace the steps of people who've walked these same streets for centuries, a way to connect ourselves to the never-ending march of time. When I'm not working, I'm reading about work, when I'm not reading about work, I'm watching things about work, all other times, I'm drinking coffee in the sun with my cat. Aside from studying how to run a museum, I went to Mount Carmel College for a degree in Communication Studies. This one time, I did a walk for a group of women from Germany, some of whom had some ancestral connections to India. They braved the streets and museums of the city with me, and allowed me small glimpses into their rich lives. I now have more goals for myself as I grow older, and it happens every time I get to walk with slightly older women who have seen more of the world and are so open to sharing their knowledge and their joy.\n\nFavourite walk at Gully - Pete Walk\nMost memorable travel experience - The time I got food poisoning in Calcutta because it was raining, we got a sandwich from a nearby mall rather than venturing out into the city. Never again, pushes me to find good, local food everywhere.\nOn the bucket list - Time travel (what else could possibly make sense for someone like me?)",
-    },
+    // {
+    //   name: "Aishwarya Kirit",
+    //   image: "/team/aishwarya.jpeg",
+    //   role: "Travel Storyteller",
+    //   description: ["Hoovu Gatherer", "Archivist", "Feline enthusiast"],
+    //   bio: "Aishwarya is a museum professional, and is happiest researching and writing about history and culture. Walking with Gully Tours is a way to retrace the steps of people who've walked these same streets for centuries, a way to connect ourselves to the never-ending march of time. When I'm not working, I'm reading about work, when I'm not reading about work, I'm watching things about work, all other times, I'm drinking coffee in the sun with my cat. Aside from studying how to run a museum, I went to Mount Carmel College for a degree in Communication Studies. This one time, I did a walk for a group of women from Germany, some of whom had some ancestral connections to India. They braved the streets and museums of the city with me, and allowed me small glimpses into their rich lives. I now have more goals for myself as I grow older, and it happens every time I get to walk with slightly older women who have seen more of the world and are so open to sharing their knowledge and their joy.\n\nFavourite walk at Gully - Pete Walk\nMost memorable travel experience - The time I got food poisoning in Calcutta because it was raining, we got a sandwich from a nearby mall rather than venturing out into the city. Never again, pushes me to find good, local food everywhere.\nOn the bucket list - Time travel (what else could possibly make sense for someone like me?)",
+    // },
     {
       name: "Bhavana Jain",
       image: "/team/bhavana.jpg",
@@ -104,27 +111,29 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["Scientist", "Quizzer", "Adventurer"],
       bio: "Dhiren is an explorer, investigator, thinker and an overall curious person. This curiosity makes him want to know more about different things ranging from astrophysics to sports. Being associated with Gully tours is an extension of his need to explore and find new stories. It brings him immense joy to share and hear untold stories and lore. A history and trivia buff Dhiren loves learning facts and origin stories. One other thing he enjoys is having deep conversations with people which leaves him and others with an existential crisis. Having a Master of Technology in Industrial Biotechnology from NIT Surathkal he works in biopharma development as a scientist who develops manufacturing processes.\n\nFavourite walk at Gully: Malleswaram Hogona!\nMost memorable travel experience: Hitchhiking through Rajasthan and Gujarat in the most economical way.\nOn the bucket list: Travelling across South and Southeast Asia trying to hunt for relatively unknown fruits and other plants.",
+      objectPosition: "0% 0%",
     },
     {
       name: "Ipsita Herlekar",
-      image: "/team/ipsita-herlekar.jpg",
+      image: "/team/ipsita.webp",
       role: "Travel Storyteller",
       description: ["Wildlife Biologist", "Writer", "Gardener"],
       bio: "Ipsita Herlekar is a wildlife biologist and science writer by training who enjoys deconstructing complex science so that everyone can understand it. Born and brought up in Mysore, she loves discovering new stories about her home city and sharing them with others. A passionate reader, she's drawn to books on history, nature, humour, and travel, and when not travelling, she escapes through travelogues instead. Ipsita also loves gardening and old-fashioned hobbies like writing letters.\n\nMost memorable travel experience - Are from Kyoto in autumn and the old city of Istanbul\nOn the bucket list – To trek up to Machu Picchu someday.",
     },
-    {
-      name: "Mradula Hegde",
-      image: "/team/mradula.jpg",
-      role: "Travel Storyteller",
-      description: ["Copy Writer", "Pop Culture Buff", "Chai Lover"],
-      bio: "Mradula is a self-proclaimed Bollywood junkie. When not sipping cups of chai or consuming pop culture on the phone, she leads walks. A Bombay girl in Bengaluru, she loves to meet new people, try local street food, and learn more about spaces and cultures. A copywriter by profession and a biotech graduate by degree, her love for stories and spaces brought her to Gully tours. She will urge you to try solo travel at least once and encourages you to teach her a few key phrases in your mother tongue on walks with her. In return she will tell you the best vada pav and chai joints in the city.",
-    },
+    // {
+    //   name: "Mradula Hegde",
+    //   image: "/team/mradula.jpg",
+    //   role: "Travel Storyteller",
+    //   description: ["Copy Writer", "Pop Culture Buff", "Chai Lover"],
+    //   bio: "Mradula is a self-proclaimed Bollywood junkie. When not sipping cups of chai or consuming pop culture on the phone, she leads walks. A Bombay girl in Bengaluru, she loves to meet new people, try local street food, and learn more about spaces and cultures. A copywriter by profession and a biotech graduate by degree, her love for stories and spaces brought her to Gully tours. She will urge you to try solo travel at least once and encourages you to teach her a few key phrases in your mother tongue on walks with her. In return she will tell you the best vada pav and chai joints in the city.",
+    // },
     {
       name: "Nevin Sabu",
       image: "/team/nevin.jpeg",
       role: "Travel Storyteller",
       description: ["Educator", "Explorer", "Guitarist"],
       bio: "Nevin works with U&I, a non-profit that creates learning opportunities for underserved children, but somehow still has energy left to chase Bangalore's hidden stories, potholes, and the occasional perfect dosa. Fueled by curiosity about people, places, facts, and stories, he loves connecting the dots between small details and big stories, and he's happiest spotting hidden murals while sharing the strange, funny, and wonderful things that make Bangalore tick. He got into Gully Tours because he loves stories, fun facts, and meeting people—and what better way to combine all three than walking the city and uncovering its quirks while making others laugh along the way? Nevin holds a BSc in Physics with a minor in Education, which reflects his love for learning and exploring the world around him. When he's not on a walk, he's hunting for the best biryani in town, strumming his guitar, watching movies, debating something completely unnecessary just for fun, or planning his next adventure.\n\nFavourite walk at Gully - His favourite walk is the Colonial Crawl.\nMost memorable travel experience - One of his most memorable travel moments was rafting through the wild waters of the Teesta River.\nOn the bucket list – His ultimate bucket list is packed with adventure sports like surfing, skydiving, and wingsuiting.",
+      objectPosition: "0% 0%",
     },
     {
       name: "Nishitha Krishnaswamy",
@@ -132,6 +141,7 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["Academic", "Performer", "Adventurer"],
       bio: "Nishitha sees life as an adventure — whether she's scaling a cliff face or free-falling from the sky, she finds joy in every thrill that comes her way. Her curiosity fuels her, driving her to learn something new each day through books, travel, and conversations. A lover of classical music, dance, theatre, technology, history, and the ocean, Nishitha finds inspiration in the vastness of both art and the world around her. She joined Gully Tours for the joy of storytelling — to share the tales of her beloved Mysuru and connect with people who love discovering the soul of a city through its stories. When she isn't leading a walk, you'll find her training in Carnatic Classical and light music, practising Bharatanatyam, performing in plays, or watching offbeat films. Nishitha holds a PhD in Journalism and Communication, with research focused on working with sex workers in Southern Karnataka to assess the effectiveness of health communication interventions.\n\nFavourite walk at Gully – Tipu's Trail, which fills her with pride as she narrates the story of the warrior who once had the British on their knees.\nMost memorable travel experience – Exploring the rock-cut cave temples of Badami, Aiholé, and Pattadkal, where she stood in awe at the cradle of Indian temple architecture.\nOn the bucket list – Joining an ocean conservation expedition in the Mariana Trench and conducting research from an underwater station.",
+      objectPosition: "0% 30%",
     },
     {
       name: "Prathyush Mandar",
@@ -142,14 +152,14 @@ export default function TeamSection() {
     },
     {
       name: "Preethika Sabu",
-      image: "/team/preetika.jpg",
+      image: "/team/preetika.webp",
       role: "Travel Storyteller",
       description: ["Impact Investor", "Reader", "Swimmer"],
       bio: "Preethika has a love for cities, stories, and the small surprises tucked into familiar corners. She joined Gully Tours to rediscover the city she grew up in, one hidden lane and stray piece of lore at a time, and to share the joy of discovery with others. She dislikes waking up early but loves swimming in the morning, so most days you'll find her either cocooned in bed or doing laps in the pool, with the weather usually deciding which. A devoted browser of used and independent bookstores, she picks up everything from feminist theory and thrillers to books on how companies are built and brands evolve. Anything within reach can become a bookmark, and earrings collected over the years are her most treasured keepsakes. She loves warm beverages, especially a good filter coffee or tea from her favourite corners of the city. Preethika holds a Master's in Public Policy from St. Xavier's College, Mumbai, and works as an impact investor with a soft spot for enterprises in waste-to-value, clean energy, and sustainable mobility.\n\nFavourite walk at Gully – Death by Dose, Chickpete, for its unexpected stories and delicious stops.\nMost memorable travel experience – Getting partially lost in Shimla, sipping hot tea and eating Maggi under tall deciduous trees.\nOn the bucket list – To try every water sport possible and, one day, swim across the English Channel.",
     },
     {
       name: "Raji Sunderkrishnan",
-      image: "/team/raji.jpeg",
+      image: "/team/raji.webp",
       role: "Travel Storyteller",
       description: ["Dreamer", "Writer", "Photographer"],
       bio: "Raji is a dreamer, eternally optimistic about the world and its people. She is moved by words and images and peeved by discrimination. A slow travel enthusiast, she considers travel her lifelong teacher. Life took her out of Bombay, but hasn't yet taken Bombay or the craving for ladi pav out of her. Bangalore is her second home, and she enjoyed discovering a quieter version of the city earlier, and is now rediscovering things as part of the explorations for Gully Tours. Raji loves meeting people, having interesting conversations, and trying local food. Storytelling has always been her passion and she can talk for hours about the things that excite her. Raji has had careers in architecture, teaching, photography, writing, and editing.\n\nFavourite walk at Gully: Currently, Colonial Crawl.\nMost memorable travel experience: Too many to recount, but the common thread is that most of them occurred before the smartphone and social media age ;)\nOn the bucket list: To travel along ancient trading routes, or maybe in the intrepid footsteps of travellers like Ibn Battuta.",
@@ -160,6 +170,7 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["Facilitator", "Entrepreneur", "Veena-Player"],
       bio: "Raksha is a facilitator, entrepreneur, and storyteller who loves bringing ideas and communities to life. She wears many hats between running a rural foods startup and leading walking tours that celebrate the soul of Bangalore. At Gully Tours, she leads walks that celebrate Bangalore's heart and culture. For Raksha, every walk is a chance to know the city a little more deeply and with each story uncovered, her bond with Bangalore grows stronger. When not walking the gullies of Bengaluru, she enjoys playing the Veena, exploring markets and parks, journaling, and spending quiet time in nature, always with her two doggos by her side. A Master's degree in Management and certified MBTI practitioner, Raksha brings her background in HR, facilitation, and entrepreneurship into everything she does.\n\nFavourite walk at Gully: Malleshwaram Hogona, for its beautiful mix of culture, heritage, and glorious impact of art on public behaviour.\nMost memorable travel experience: Watching the sunrise over the Ganga in Rishikesh, a timeless and deeply grounding moment.\nOn the bucket list: To learn the traditional art of Mysore-style painting.",
+      objectPosition: "0% 0%",
     },
     {
       name: "Rohith Siingh",
@@ -181,6 +192,7 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["Architect", "Designer", "Explorer"],
       bio: "Tanusha is an explorer at heart — always diving into places like a local, uncovering hidden corners, vibrant colors, and untold stories. Driven by curiosity and creativity, she finds joy in observing the textures, patterns, and quiet rhythms that give spaces their soul. An alumna of the Wadiyar Center for Architecture and currently pursuing History at IGNOU, she blends design thinking with a love for storytelling and discovery. At Gully Tours, Tanusha brings her keen eye for detail and wonder to every walk, helping people notice the beauty tucked into everyday life. She believes that history hums in every corner and that each walk is a chance to connect stories, perspectives, and people.\n\nHer favourite Gully walk – the ones where stories and perspectives intersect, revealing unexpected connections across cultures and lives.\nMost memorable travel experience – Boulder-hopping along a forest trail to a waterfall in Sirsi, where she stumbled upon a hidden cave and a secret fountain — a place alive with quiet magic.\nOn the bucket list – To dive off the rocky cliffs of Hvar into the turquoise Adriatic, chasing the thrill of the jump and the freedom of the sea below.",
+      objectPosition: "0% 0%",
     },
     {
       name: "Venkat Prasad",
@@ -195,6 +207,7 @@ export default function TeamSection() {
       role: "Travel Storyteller",
       description: ["Explorer", "Storyteller", "Yogi"],
       bio: "Yamini is a curious soul who wears many hats — explorer, storyteller, and eternal learner. Life feels most exciting to her when she's discovering something new, whether it's a hidden café, a great book (or more often, a binge-worthy series), or an offbeat corner of the city. A self-confessed foodie with an ever-growing appetite, she's always chasing bold flavours and quirky eateries. At Gully Tours, Yamini has found the perfect blend of her passions — meeting people, exploring stories, and seeing the world through a curious, open lens. What began as a way to connect with fellow wanderers has turned into a deeper journey of discovery through Bengaluru's streets, its people, and its untold tales. With a background in Commerce and Computer Science, Yamini has dabbled in project management, entrepreneurship, and storytelling. She's also a certified Ashtanga Vinyasa Yoga instructor — finding balance both on and off the mat.\n\nHer favourite Gully walks – The Food Tour and The Palace Tour, where every step is layered with flavour and history.\nOn the bucket list – To ride the waves surfing, dive deep scuba style, and master Kalaripayattu in Kerala — because, as she says, why not?",
+      objectPosition: "5% 5%",
     },
   ];
 
@@ -223,6 +236,7 @@ export default function TeamSection() {
                 image={member.image}
                 role={member.role}
                 description={member.description}
+                objectPosition={member.objectPosition}
               />
             </div>
           ))}

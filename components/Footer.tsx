@@ -45,7 +45,7 @@ export default function Footer() {
     { label: "Tours & Experiences", href: "/tours" },
     { label: "About", href: "/about" },
     { label: "Urban Explorer", href: "/city-explorer" },
-    { label: "Social Commitment", href: "/social-commitment" },
+    { label: "Gully Gives", href: "/gully-gives" },
     { label: "Content Collaboration", href: "/collaboration" },
   ];
 

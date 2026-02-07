@@ -29,17 +29,16 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed left-1/2 z-50 -translate-x-1/2 bg-white px-9 shadow-lg transition-all duration-500 ease-in-out ${
-        isScrolled
-          ? "top-0 w-full rounded-none"
-          : "top-8 w-full max-w-[1368px] rounded-lg"
-      }`}
+      className={`fixed left-1/2 z-50 -translate-x-1/2 bg-white px-9 shadow-lg transition-all duration-500 ease-in-out ${isScrolled
+        ? "top-0 w-full rounded-none"
+        : "top-8 w-full max-w-[1368px] rounded-lg"
+        }`}
     >
       <div className="flex h-[72px] items-center justify-between gap-8">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <Image
-            src="/gully-logo.svg"
+            src="/logo-black.png"
             alt="Gully Tours"
             width={157}
             height={37}
@@ -56,11 +55,10 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`font-dm-sans text-lg font-bold uppercase transition-colors ${
-                  isActive
-                    ? "text-black"
-                    : "text-[#929292] hover:text-black"
-                }`}
+                className={`font-dm-sans text-lg font-bold uppercase transition-colors ${isActive
+                  ? "text-black"
+                  : "text-[#929292] hover:text-black"
+                  }`}
                 style={{ letterSpacing: "-0.04em" }}
               >
                 {item.label}

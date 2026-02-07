@@ -67,7 +67,7 @@ export default function FoundersNoteSection() {
           variants={slideUpVariants}
         >
           <Image
-            src="/founder-note.png"
+            src="/founders-note.png"
             alt="Founder"
             fill
             className="object-contain"

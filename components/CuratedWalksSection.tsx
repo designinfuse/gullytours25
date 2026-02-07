@@ -152,7 +152,7 @@ export default function CuratedWalksSection() {
             src="/curated-walks-3.jpg"
             alt="Walking experience"
             fill
-            className="rounded-lg object-cover"
+            className="rounded-lg object-cover object-top"
           />
         </motion.div>
 
@@ -186,7 +186,7 @@ export default function CuratedWalksSection() {
             src="/curated-walks-5.jpg"
             alt="Cultural exploration"
             fill
-            className="rounded-lg object-cover"
+            className="rounded-lg object-cover object-[0%_20%]"
           />
         </motion.div>
       </div>

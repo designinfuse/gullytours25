@@ -11,6 +11,7 @@ interface TourItemProps {
   image?: string;
   bgColor?: string;
   when?: string; // ISO date string for upcoming tours
+  buttonLabel?: string;
 }
 
 // Format date for display
@@ -34,6 +35,7 @@ export default function TourItem({
   image,
   bgColor = "#DE6D11",
   when,
+  buttonLabel = "VIEW TOUR",
 }: TourItemProps) {
   // Use provided image or fallback to tour-specific thumb image
   const thumbImage = image || `/tours/${encodeURIComponent(id)}/thumb.jpg`;
@@ -84,7 +86,7 @@ export default function TourItem({
               {price}
             </p>
             <span className="rounded-2xl bg-[#FDF6D8] px-4 py-2.5 font-rajdhani text-base font-semibold leading-[1.2em] text-[#262626] transition-all group-hover:bg-[#F5EF86]">
-              VIEW TOUR
+              {buttonLabel}
             </span>
           </div>
         </div>

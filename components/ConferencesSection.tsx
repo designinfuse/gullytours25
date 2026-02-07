@@ -10,6 +10,7 @@ interface CaseStudy {
   description: string;
   borderColor: string;
   image: string;
+  slug: string;
 }
 
 export default function ConferencesSection() {
@@ -21,6 +22,7 @@ export default function ConferencesSection() {
         "A walk stitched with stories and art, designed to bring Google's team closer to Bengaluru—and to each other.",
       borderColor: "#DE6D11",
       image: "/conferences/google-case-study.jpg",
+      slug: "google-colonial-crawl",
     },
     {
       id: "cred",
@@ -29,14 +31,16 @@ export default function ConferencesSection() {
         "Centuries-old markets, local bites, and shared laughter—curated into a walk that helped CRED's team see the city, and each other, anew.",
       borderColor: "#4F8C7D",
       image: "/conferences/cred-case-study.jpg",
+      slug: "cred-pete-by-night",
     },
     {
       id: "hyatt",
-      title: "Hyatt Centric –\nHigh on Death by Dosa",
+      title: "Hyatt –\nHigh on Death by Dosa",
       description:
-        "We built a journey along Bangalore's iconic dosa trail, filled with conversation, culture, and culinary delights for Hyatt Centric.",
+        "We built a journey along Bangalore's iconic dosa trail, filled with conversation, culture, and culinary delights for Hyatt.",
       borderColor: "#B23F27",
       image: "/conferences/hyatt-case-study.jpg",
+      slug: "hyatt-centric-death-by-dosa",
     },
   ];
 
@@ -93,7 +97,11 @@ export default function ConferencesSection() {
           {/* Right side - Case Studies */}
           <div className="flex w-full flex-col gap-8 lg:w-[45%] lg:max-w-[590px]">
             {caseStudies.map((study) => (
-              <div key={study.id} className="flex gap-5 md:gap-7">
+              <Link
+                key={study.id}
+                href={`/case-studies/${study.slug}`}
+                className="flex gap-5 md:gap-7 transition-transform hover:scale-[1.02]"
+              >
                 {/* Image with colored border */}
                 <div
                   className="relative h-[120px] w-[120px] flex-shrink-0 overflow-hidden p-2 md:h-[154px] md:w-[153px]"
@@ -118,7 +126,7 @@ export default function ConferencesSection() {
                     {study.description}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

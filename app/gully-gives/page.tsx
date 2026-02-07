@@ -3,27 +3,26 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Newsletter from "@/components/Newsletter";
 import RunningBand from "@/components/RunningBand";
-import AboutContentSection from "@/components/AboutContentSection";
-import FoundersNoteSection from "@/components/FoundersNoteSection";
-import TeamSection from "@/components/TeamSection";
-import TimelineSection from "@/components/TimelineSection";
-import FamousFacesSection from "@/components/FamousFacesSection";
-import GiftAWalkSection from "@/components/GiftAWalkSection";
+import GullyGivesSection from "@/components/GullyGivesSection";
+import GullyGivesImpactSection from "@/components/GullyGivesImpactSection";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
 import JoinTribeSection from "@/components/JoinTribeSection";
+import GullyGivesJoinSection from "@/components/GullyGivesJoinSection";
+import GullyGivesDifferenceSection from "@/components/GullyGivesDifferenceSection";
+import GullyGivesCollaborationSection from "@/components/GullyGivesCollaborationSection";
 
-export default function AboutPage() {
+export default function GullyGivesPage() {
   return (
     <>
+      <Navbar />
+
       {/* Hero Section */}
       <div className="relative min-h-screen w-full overflow-hidden">
-        {/* Navbar */}
-        <Navbar />
-
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/about-hero.jpeg"
-            alt="About Gully Tours"
+            src="/gully-gives-3.jpeg"
+            alt="Gully Gives - Community and Impact"
             fill
             className="object-cover"
             priority
@@ -31,7 +30,7 @@ export default function AboutPage() {
         </div>
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-x-0 bottom-0 top-0 left-0 right-0 bg-gradient-to-t from-black/30 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 top-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent" />
 
         {/* Content */}
         <main className="relative flex min-h-screen flex-col items-center justify-start px-4 py-32">
@@ -42,9 +41,9 @@ export default function AboutPage() {
               textShadow: "10px 10px 5px rgba(57, 54, 50, 0.23)",
             }}
           >
-            BRINGING CITIES
+            WALKING THE TALK,
             <br />
-            TO LIFE WITH HEART
+            ONE STORY AT A TIME
           </h1>
         </main>
 
@@ -54,31 +53,19 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* About Content Section */}
-      <AboutContentSection />
+      {/* Impact Section from Figma */}
+      <GullyGivesImpactSection />
 
-      {/* Founders Note Section */}
-      <FoundersNoteSection />
+      {/* How to join section from Figma */}
+      <GullyGivesJoinSection />
 
-      {/* Team Section */}
-      <TeamSection />
+      {/* Walks that make a difference from Figma */}
+      <GullyGivesDifferenceSection />
 
-      {/* Timeline Section */}
-      <TimelineSection />
+      {/* Collaboration with a cause section from Figma */}
+      <GullyGivesCollaborationSection />
 
-      {/* Famous Faces Section */}
-      <FamousFacesSection />
-
-      {/* Gift A Walk Section */}
-      {/* <GiftAWalkSection /> */}
-
-      {/* Join Our Tribe Section */}
-      <JoinTribeSection />
-
-      {/* Newsletter Section */}
       <Newsletter />
-
-      {/* Footer */}
       <Footer />
     </>
   );
