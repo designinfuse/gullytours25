@@ -22,7 +22,7 @@ export default function CorporateWalksPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/corporate-hero-plansee.png"
+            src="/custom_hero.png"
             alt="Corporate Walks and Experiences"
             fill
             className="object-cover"
@@ -64,10 +64,10 @@ export default function CorporateWalksPage() {
       </section>
 
       {/* Corporate Clients Carousel */}
-      <CorporateClientsCarousel />
+      {/* <CorporateClientsCarousel /> */}
 
-      {/* Corporate Benefits Section */}
-      <CorporateBenefitsSection />
+      {/* Custom Benefits Section */}
+      <CorporateBenefitsSection variant="custom" />
 
       {/* How It Works Section */}
       <HowItWorksSection />

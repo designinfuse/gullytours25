@@ -12,19 +12,38 @@ interface Client {
   height: number;
 }
 
-export default function CorporateClientsCarousel() {
-  // NOTE: Logo dimensions from Figma design
-  // The Figma design has logos in a flattened SVG - replace these placeholder paths
-  // with actual client logo files in /public/clients/ directory
-  const clients: Client[] = [
-    { name: "Client 1", logo: "/clients/logo-1.png", width: 160, height: 54 },
-    { name: "Client 2", logo: "/clients/logo-2.png", width: 160, height: 56 },
-    { name: "Client 3", logo: "/clients/logo-3.png", width: 160, height: 98 },
-    { name: "Client 4", logo: "/clients/logo-4.png", width: 80, height: 80 },
-    { name: "Client 5", logo: "/clients/logo-5.png", width: 160, height: 160 },
-    { name: "Client 6", logo: "/clients/logo-6.png", width: 180, height: 47 },
-    { name: "Client 7", logo: "/clients/logo-7.png", width: 160, height: 70 },
-  ];
+const corporateClients: Client[] = [
+  { name: "Client 1", logo: "/clients/logo-1.png", width: 160, height: 54 },
+  { name: "Client 2", logo: "/clients/logo-2.png", width: 160, height: 56 },
+  { name: "Client 3", logo: "/clients/logo-3.png", width: 160, height: 98 },
+  { name: "Client 4", logo: "/clients/logo-4.png", width: 80, height: 80 },
+  { name: "Client 5", logo: "/clients/logo-5.png", width: 160, height: 160 },
+  { name: "Client 6", logo: "/clients/logo-6.png", width: 180, height: 47 },
+  { name: "Client 7", logo: "/clients/logo-7.png", width: 160, height: 70 },
+];
+
+const educationalClients: Client[] = [
+  { name: "Oxford University", logo: "/clients/educational/oxford.png", width: 140, height: 140 },
+  { name: "MIT", logo: "/clients/educational/mit.png", width: 160, height: 80 },
+  { name: "Kings College", logo: "/clients/educational/kings-college.png", width: 140, height: 140 },
+  { name: "Cambridge University", logo: "/clients/educational/cambridge.png", width: 140, height: 140 },
+  { name: "Yale", logo: "/clients/educational/yale.png", width: 120, height: 120 },
+  { name: "Trinity College", logo: "/clients/educational/trinity-college.png", width: 140, height: 140 },
+  { name: "University of Gastronomy", logo: "/clients/educational/unisg.png", width: 140, height: 140 },
+  { name: "Aditi Mallya", logo: "/clients/educational/aditi-mallya.png", width: 140, height: 80 },
+  // { name: "Inventure Academy", logo: "/clients/educational/inventure-academy.png", width: 140, height: 140 },
+  // { name: "Vidyashilp Academy", logo: "/clients/educational/vidyashilp.png", width: 140, height: 80 },
+  { name: "Christ University", logo: "/clients/educational/christ-university.png", width: 140, height: 140 },
+  { name: "Srishti Manipal", logo: "/clients/educational/srishti-manipal.png", width: 140, height: 140 },
+  { name: "Canadian International School", logo: "/clients/educational/canadian-international.png", width: 160, height: 80 },
+];
+
+interface CorporateClientsCarouselProps {
+  variant?: "corporate" | "educational";
+}
+
+export default function CorporateClientsCarousel({ variant = "corporate" }: CorporateClientsCarouselProps) {
+  const clients = variant === "educational" ? educationalClients : corporateClients;
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {

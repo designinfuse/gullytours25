@@ -13,7 +13,7 @@ export default function Navbar() {
     { label: "TOURS & EXPERIENCES", href: "/tours" },
     { label: "ABOUT", href: "/about" },
     { label: "URBAN EXPLORER", href: "/city-explorer" },
-    { label: "COLLABORATION", href: "/collaboration" },
+    { label: "COLLABORATION", href: "/collaborations" },
     { label: "CONTACT", href: "/contact" },
   ];
 

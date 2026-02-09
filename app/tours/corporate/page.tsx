@@ -65,7 +65,7 @@ export default function CorporateWalksPage() {
       <CorporateClientsCarousel />
 
       {/* Corporate Benefits Section */}
-      <CorporateBenefitsSection />
+      <CorporateBenefitsSection variant="corporate" />
 
       {/* How It Works Section */}
       <HowItWorksSection />
